@@ -1,17 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Paper, Typography } from '@mui/material';
 import './index.css';
-// import App from './App';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-
-const App = (props) => {
-  return (
-    <Paper variant="outlined">
-      <Typography variant="h1">Hello World</Typography>
-    </Paper>
-  );
-};
 
 if (document.getElementById('root')) {
   const props = Object.assign({}, document.getElementById('root').dataset);
