@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { Box, Collapse, CssBaseline, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
+import { Box, Collapse, CssBaseline, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from '@material-ui/core';
 import { AlternateEmail as AlternateEmailIcon, Brightness4 as Brightness4Icon, Brightness7 as Brightness7Icon, Code as CodeIcon, ExpandLess as ExpandLessIcon, ExpandMore as ExpandMoreIcon, List as ListIcon, PersonOutline as PersonOutlineIcon, Tune as TuneIcon } from '@material-ui/icons';
 import { createTheme, makeStyles, ThemeProvider, useTheme } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
 import { capitalize, map } from 'lodash';
 
 import logo from './logo.svg';
+import profilePicture from './images/profile.jpg';
 import './App.css';
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
@@ -34,9 +35,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     padding: theme.spacing(2),
-    height: 240,
-    backgroundColor: deepOrange['A200'],
-    color: '#fff',
+    height: 260,
+    // backgroundImage: `url(${profilePicture})`,
+    // backgroundSize: 'cover',
+    // backgroundPosition: 'center',
+    // backgroundRepeat: 'no-repeat',
   },
   nestedDrawerItems: {
     paddingLeft: theme.spacing(4),
@@ -55,27 +58,32 @@ const AppContent = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   
-  const [ openSettings, setOpenSettings ] = useState(true);
+  const [ openSettings, setOpenSettings ] = useState(false);
+  const [ selectedDrawerItem, setSelectedDrawerItem ] = useState('about');
 
   const drawerItems = [
     {
       icon: <PersonOutlineIcon />,
       label: 'About',
+      name: 'about',
       url: '/portfolio',
     },
     {
       icon: <ListIcon />,
       label: 'Skills',
+      name: 'skills',
       url: '/skills',
     },
     {
       icon: <CodeIcon />,
       label: 'Works',
+      name: 'works',
       url: '/works',
     },
     {
       icon: <AlternateEmailIcon />,
       label: 'Contact',
+      name: 'contact',
       url: '/contact',
     },
   ];
@@ -92,17 +100,19 @@ const AppContent = () => {
             paper: classes.drawerPaper,
           }}
         >
-          <Box className={classes.toolbar}>
-            <Typography variant="h5">Christian Arvie</Typography>
-            <Typography variant="h4" style={{ fontWeight: 'bold' }}>Benito</Typography>
-            <Typography variant="caption" style={{ color: '#000', paddingTop: 15 }}>Web Developer</Typography>
-          </Box>
+          <Paper variant="elevation" elevation={2} square>
+            <Box className={classes.toolbar}>
+              <Typography variant="h5">Christian Arvie</Typography>
+              <Typography variant="h4" style={{ fontWeight: 'bold' }}>Benito</Typography>
+              <Typography variant="caption" style={{ paddingTop: 15 }}>Web Developer</Typography>
+            </Box>
+          </Paper>
 
           <List>
             {
               map(drawerItems, (item, index) => {
                 return (
-                  <ListItem button key={`item${item.label}`} component={Link} to={item.url}>
+                  <ListItem button selected={item.name === selectedDrawerItem} key={`item${item.name}`} component={Link} to={item.url} onClick={() => setSelectedDrawerItem(item.name)}>
                     <ListItemIcon>{ item.icon }</ListItemIcon>
                     <ListItemText primary={item.label} />
                   </ListItem>
@@ -113,22 +123,24 @@ const AppContent = () => {
 
           <Divider />
 
-          <List>
+          {/* <List>
             <ListItem button onClick={() => setOpenSettings(!openSettings)}>
               <ListItemIcon><TuneIcon /></ListItemIcon>
               <ListItemText primary="Settings" />
               { openSettings ? <ExpandLessIcon /> : <ExpandMoreIcon /> }
             </ListItem>
 
-            <Collapse in={openSettings} timeout="auto" unmountOnExit>
-              <List disablePadding>
-                <ListItem button className={classes.nestedDrawerItems} onClick={colorMode.toggleColorMode}>
+            <Collapse in={openSettings} timeout="auto" unmountOnExit> */}
+              {/* <List disablePadding> */}
+              <List>
+                {/* <ListItem button className={classes.nestedDrawerItems} onClick={colorMode.toggleColorMode}> */}
+                <ListItem button onClick={colorMode.toggleColorMode}>
                   <ListItemIcon>{ theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon /> }</ListItemIcon>
                   <ListItemText primary={`${capitalize(theme.palette.type === 'light' ? 'dark' : 'light')} mode`} />
                 </ListItem>
               </List>
-            </Collapse>
-          </List>
+            {/* </Collapse>
+          </List> */}
         </Drawer>
 
         <main>
