@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Box, CssBaseline, Typography } from '@material-ui/core';
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
-import DrawerComponent from './components/drawer/DrawerComponent';
+import DrawerComponent from '../src/js/components/drawer/DrawerComponent';
+import themeSettings from './js/config/theme';
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -38,19 +39,17 @@ const AppContent = () => {
 }
 
 const App = () => {
-  const [ themeMode, setThemeMode ] = useState({ type: 'light' });
+  const { lightTheme, darkTheme } = themeSettings();
+
+  const [ isDarkMode, setIsDarkMode ] = useState(false);
 
   const colorMode = useMemo(() => ({
     toggleColorMode: () => {
-      setThemeMode((prevMode) => (prevMode.type === 'light' ? { type: 'dark' } : { type: 'light' }));
+      setIsDarkMode((prevMode) => !prevMode);
     },
   }), [],);
 
-  const mainTheme = useMemo(() => createTheme({
-    palette: {
-      ...themeMode,
-    },
-  }), [themeMode],);
+  const mainTheme = useMemo(() => isDarkMode ? darkTheme : lightTheme, [isDarkMode],);
   
   return (
     <React.Fragment>
