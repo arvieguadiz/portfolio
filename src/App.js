@@ -1,10 +1,12 @@
 import React, { createContext, useMemo, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Box, CssBaseline, Typography } from '@material-ui/core';
-import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
 import DrawerComponent from '../src/js/components/drawer/DrawerComponent';
 import themeSettings from './js/config/theme';
+import Base from './js/components/pages/Base';
+import Home from './js/components/pages/home/Home';
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -25,13 +27,16 @@ const AppContent = () => {
         <DrawerComponent ColorModeContext={ColorModeContext} />
 
         <main>
-          <Routes>
-            <Route path="/portfolio" element={<Typography variant="h2">About</Typography>} />
-            <Route path="/skills" element={<Typography variant="h2">Skills</Typography>} />
-            <Route path="/works" element={<Typography variant="h2">Works</Typography>} />
-            <Route path="/contact" element={<Typography variant="h2">Contact</Typography>} />
-            <Route path="/site_info" element={<Typography variant="h2">About this site</Typography>} />
-          </Routes>
+          <Base>
+            <Routes>
+              <Route path="/portfolio" element={<Home />} />
+              <Route path="/about" element={<Typography variant="h2">About</Typography>} />
+              <Route path="/skills" element={<Typography variant="h2">Skills</Typography>} />
+              <Route path="/works" element={<Typography variant="h2">Works</Typography>} />
+              <Route path="/contact" element={<Typography variant="h2">Contact</Typography>} />
+              <Route path="/site_info" element={<Typography variant="h2">About this site</Typography>} />
+            </Routes>
+          </Base>
         </main>
       </Box>
     </BrowserRouter>
@@ -49,7 +54,7 @@ const App = () => {
     },
   }), [],);
 
-  const mainTheme = useMemo(() => isDarkMode ? darkTheme : lightTheme, [isDarkMode],);
+  const mainTheme = useMemo(() => isDarkMode ? darkTheme : lightTheme, [isDarkMode, darkTheme, lightTheme],);
   
   return (
     <React.Fragment>

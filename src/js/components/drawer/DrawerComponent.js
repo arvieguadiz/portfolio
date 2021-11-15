@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Collapse, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from '@material-ui/core';
-import { AlternateEmail as AlternateEmailIcon, Brightness4 as Brightness4Icon, Brightness7 as Brightness7Icon, Code as CodeIcon, ExpandLess as ExpandLessIcon, ExpandMore as ExpandMoreIcon, HelpOutline as HelpOutlineIcon, List as ListIcon, PersonOutline as PersonOutlineIcon, Tune as TuneIcon } from '@material-ui/icons';
+import { Box, Collapse, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { AlternateEmailRounded as AlternateEmailRoundedIcon, Brightness4Rounded as Brightness4RoundedIcon, Brightness7Rounded as Brightness7RoundedIcon, CodeRounded as CodeRoundedIcon, ExpandLess as ExpandLessIcon, ExpandMore as ExpandMoreIcon, HelpRounded as HelpRoundedIcon, HomeRounded as HomeRoundedIcon, ListRounded as ListRoundedIcon, PersonRounded as PersonRoundedIcon, TuneRounded as TuneRoundedIcon } from '@material-ui/icons';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { capitalize, map } from 'lodash';
 
@@ -20,7 +20,9 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    // justifyContent: 'center',
   },
+  defaultToolbar: theme.mixins.toolbar,
   toolbar: {
     display: 'flex',
     flexDirection: 'column',
@@ -47,29 +49,35 @@ const DrawerComponent = (props) => {
   const colorMode = useContext(ColorModeContext);
   
   const [ openSettings, setOpenSettings ] = useState(false);
-  const [ selectedDrawerItem, setSelectedDrawerItem ] = useState('about');
+  const [ selectedDrawerItem, setSelectedDrawerItem ] = useState('home');
 
   const drawerItems = [
     {
-      icon: <PersonOutlineIcon />,
-      label: 'About',
-      name: 'about',
+      icon: <HomeRoundedIcon />,
+      label: 'Home',
+      name: 'home',
       url: '/portfolio',
     },
     {
-      icon: <ListIcon />,
+      icon: <PersonRoundedIcon />,
+      label: 'About',
+      name: 'about',
+      url: '/about',
+    },
+    {
+      icon: <ListRoundedIcon />,
       label: 'Skills',
       name: 'skills',
       url: '/skills',
     },
     {
-      icon: <CodeIcon />,
+      icon: <CodeRoundedIcon />,
       label: 'Works',
       name: 'works',
       url: '/works',
     },
     {
-      icon: <AlternateEmailIcon />,
+      icon: <AlternateEmailRoundedIcon />,
       label: 'Contact',
       name: 'contact',
       url: '/contact',
@@ -78,7 +86,7 @@ const DrawerComponent = (props) => {
 
   const moreSubItems = [
     {
-      icon: <HelpOutlineIcon />,
+      icon: <HelpRoundedIcon />,
       label: 'About this site',
       name: 'site_info',
       url: '/site_info',
@@ -94,13 +102,15 @@ const DrawerComponent = (props) => {
         paper: classes.drawerPaper,
       }}
     >
-      <Paper variant="elevation" elevation={2} square>
+      <Box className={classes.defaultToolbar}></Box>
+
+      {/* <Paper variant="elevation" elevation={2} square>
         <Box className={classes.toolbar}>
           <Typography variant="h5">Christian Arvie</Typography>
           <Typography variant="h4" style={{ fontWeight: 'bold' }}>Benito</Typography>
           <Typography variant="caption" style={{ paddingTop: 15 }}>Web Developer</Typography>
         </Box>
-      </Paper>
+      </Paper> */}
 
       <List>
         {
@@ -113,13 +123,9 @@ const DrawerComponent = (props) => {
             );
           })
         }
-      </List>
 
-      <Divider />
-
-      <List>
         <ListItem button onClick={() => setOpenSettings(!openSettings)}>
-          <ListItemIcon><TuneIcon /></ListItemIcon>
+          <ListItemIcon><TuneRoundedIcon /></ListItemIcon>
           <ListItemText primary="More" />
           { openSettings ? <ExpandLessIcon /> : <ExpandMoreIcon /> }
         </ListItem>
@@ -138,7 +144,7 @@ const DrawerComponent = (props) => {
             }
             
             <ListItem button className={classes.nestedDrawerItems} onClick={colorMode.toggleColorMode}>
-              <ListItemIcon>{ theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon /> }</ListItemIcon>
+              <ListItemIcon>{ theme.palette.type === 'light' ? <Brightness4RoundedIcon /> : <Brightness7RoundedIcon /> }</ListItemIcon>
               <ListItemText primary={`${capitalize(theme.palette.type === 'light' ? 'dark' : 'light')} mode`} />
             </ListItem>
           </List>
