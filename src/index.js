@@ -1,15 +1,42 @@
-import React from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from '@material-ui/core/styles';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// import './index.css';
+import reportWebVitals from './reportWebVitals';
+import themeSettings from './js/config/theme';
+import Base from './js/components/pages/Base';
+import Home from './js/components/pages/home/Home';
+
+const ColorModeContext = createContext({ toggleColorMode: () => {} });
+
+const App = () => {
+  const { lightTheme, darkTheme } = themeSettings();
+
+  const [ isDarkMode, setIsDarkMode ] = useState(true);
+
+  const colorMode = useMemo(() => ({
+    toggleColorMode: () => {
+      setIsDarkMode((prevMode) => !prevMode);
+    },
+  }), [],);
+
+  const mainTheme = useMemo(() => isDarkMode ? darkTheme : lightTheme, [isDarkMode, darkTheme, lightTheme],);
+  
+  return (
+    <React.Fragment>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={mainTheme}>
+          <Base ColorModeContext={ColorModeContext}>
+            <Home />
+          </Base>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </React.Fragment>
+  );
+}
+
+ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

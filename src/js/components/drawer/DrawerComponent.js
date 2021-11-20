@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Collapse, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Box, Collapse, Drawer, Hidden, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { AlternateEmailRounded as AlternateEmailRoundedIcon, Brightness4Rounded as Brightness4RoundedIcon, Brightness7Rounded as Brightness7RoundedIcon, CodeRounded as CodeRoundedIcon, ExpandLess as ExpandLessIcon, ExpandMore as ExpandMoreIcon, HelpRounded as HelpRoundedIcon, HomeRounded as HomeRoundedIcon, ListRounded as ListRoundedIcon, PersonRounded as PersonRoundedIcon, TuneRounded as TuneRoundedIcon } from '@material-ui/icons';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { capitalize, map } from 'lodash';
@@ -13,13 +13,23 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
+    [theme.breakpoints.down('sm')]: {
+      width: `calc(100% - 55px)`,
+      marginLeft: 55,
+    },
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    [theme.breakpoints.down('sm')]: {
+      width: 55,
+    },
   },
   drawerPaper: {
     width: drawerWidth,
+    [theme.breakpoints.down('sm')]: {
+      width: 55,
+    },
     // justifyContent: 'center',
   },
   defaultToolbar: theme.mixins.toolbar,
@@ -37,6 +47,11 @@ const useStyles = makeStyles((theme) => ({
   },
   nestedDrawerItems: {
     paddingLeft: theme.spacing(4),
+  },
+  listItemIconBox: {
+    [theme.breakpoints.down('sm')]: {
+      minWidth: 0,
+    },
   },
 }));
 
@@ -102,7 +117,9 @@ const DrawerComponent = (props) => {
         paper: classes.drawerPaper,
       }}
     >
-      <Box className={classes.defaultToolbar}></Box>
+      <Hidden smDown>
+        <Box className={classes.defaultToolbar}></Box>
+      </Hidden>
 
       {/* <Paper variant="elevation" elevation={2} square>
         <Box className={classes.toolbar}>
@@ -117,38 +134,58 @@ const DrawerComponent = (props) => {
           map(drawerItems, (item, index) => {
             return (
               <ListItem button selected={item.name === selectedDrawerItem} key={`item-${item.name}-${index}`} component={Link} to={item.url} onClick={() => setSelectedDrawerItem(item.name)}>
-                <ListItemIcon>{ item.icon }</ListItemIcon>
-                <ListItemText primary={item.label} />
+                <ListItemIcon className={classes.listItemIconBox}>{ item.icon }</ListItemIcon>
+                <Hidden smDown>
+                  <ListItemText primary={item.label} />
+                </Hidden>
               </ListItem>
             );
           })
         }
 
-        <ListItem button onClick={() => setOpenSettings(!openSettings)}>
-          <ListItemIcon><TuneRoundedIcon /></ListItemIcon>
-          <ListItemText primary="More" />
-          { openSettings ? <ExpandLessIcon /> : <ExpandMoreIcon /> }
-        </ListItem>
-
-        <Collapse in={openSettings} timeout="auto" unmountOnExit>
-          <List disablePadding>
-            {
-              map(moreSubItems, (item, index) => {
-                return (
-                  <ListItem button selected={item.name === selectedDrawerItem} key={`item-${item.name}-${index}`} component={Link} to={item.url} onClick={() => setSelectedDrawerItem(item.name)} className={classes.nestedDrawerItems}>
-                    <ListItemIcon>{ item.icon }</ListItemIcon>
-                    <ListItemText primary={item.label} />
-                  </ListItem>
-                );
-              })
-            }
+        <Hidden mdUp>
+          {
+            map(moreSubItems, (item, index) => {
+              return (
+                <ListItem button selected={item.name === selectedDrawerItem} key={`item-${item.name}-${index}`} component={Link} to={item.url} onClick={() => setSelectedDrawerItem(item.name)}>
+                  <ListItemIcon className={classes.listItemIconBox}>{ item.icon }</ListItemIcon>
+                </ListItem>
+              );
+            })
+          }
             
-            <ListItem button className={classes.nestedDrawerItems} onClick={colorMode.toggleColorMode}>
-              <ListItemIcon>{ theme.palette.type === 'light' ? <Brightness4RoundedIcon /> : <Brightness7RoundedIcon /> }</ListItemIcon>
-              <ListItemText primary={`${capitalize(theme.palette.type === 'light' ? 'dark' : 'light')} mode`} />
-            </ListItem>
-          </List>
-        </Collapse>
+          <ListItem button onClick={colorMode.toggleColorMode}>
+            <ListItemIcon className={classes.listItemIconBox}>{ theme.palette.type === 'light' ? <Brightness4RoundedIcon /> : <Brightness7RoundedIcon /> }</ListItemIcon>
+          </ListItem>
+        </Hidden>
+
+        <Hidden smDown>
+          <ListItem button onClick={() => setOpenSettings(!openSettings)}>
+            <ListItemIcon><TuneRoundedIcon /></ListItemIcon>
+            <ListItemText primary="More" />
+            { openSettings ? <ExpandLessIcon /> : <ExpandMoreIcon /> }
+          </ListItem>
+
+          <Collapse in={openSettings} timeout="auto" unmountOnExit>
+            <List disablePadding>
+              {
+                map(moreSubItems, (item, index) => {
+                  return (
+                    <ListItem button selected={item.name === selectedDrawerItem} key={`item-${item.name}-${index}`} component={Link} to={item.url} onClick={() => setSelectedDrawerItem(item.name)} className={classes.nestedDrawerItems}>
+                      <ListItemIcon>{ item.icon }</ListItemIcon>
+                      <ListItemText primary={item.label} />
+                    </ListItem>
+                  );
+                })
+              }
+              
+              <ListItem button className={classes.nestedDrawerItems} onClick={colorMode.toggleColorMode}>
+                <ListItemIcon>{ theme.palette.type === 'light' ? <Brightness4RoundedIcon /> : <Brightness7RoundedIcon /> }</ListItemIcon>
+                <ListItemText primary={`${capitalize(theme.palette.type === 'light' ? 'dark' : 'light')} mode`} />
+              </ListItem>
+            </List>
+          </Collapse>
+        </Hidden>
       </List>
     </Drawer>
   );
