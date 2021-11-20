@@ -1,16 +1,30 @@
 import React, { createContext, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { Divider, Grid } from '@material-ui/core';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
 // import './index.css';
 import reportWebVitals from './reportWebVitals';
 import themeSettings from './js/config/theme';
 import Base from './js/components/pages/Base';
 import Home from './js/components/pages/home/Home';
+import About from './js/components/pages/about/About';
+import Background from './js/components/pages/background/Background';
+
+const useStyles = makeStyles((theme) => ({
+  divider: {
+    width: '75%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+  },
+}));
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const App = () => {
+  const classes = useStyles();
+
   const { lightTheme, darkTheme } = themeSettings();
 
   const [ isDarkMode, setIsDarkMode ] = useState(true);
@@ -29,6 +43,18 @@ const App = () => {
         <ThemeProvider theme={mainTheme}>
           <Base ColorModeContext={ColorModeContext}>
             <Home />
+
+            <Grid item container xs={12} justifyContent="flex-end">
+              <Divider className={classes.divider} />
+            </Grid>
+
+            <About />
+
+            <Grid item container xs={12} justifyContent="flex-end">
+              <Divider className={classes.divider} />
+            </Grid>
+
+            <Background />
           </Base>
         </ThemeProvider>
       </ColorModeContext.Provider>

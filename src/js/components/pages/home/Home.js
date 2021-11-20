@@ -20,14 +20,14 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
     },
     justifyContent: 'flex-end',
-    padding: theme.spacing(1),
+    margin: theme.spacing(1),
   },
   socialBox: {
     alignItems: 'flex-start',
     [theme.breakpoints.down('sm')]: {
       justifyContent: 'center',
     },
-    padding: theme.spacing(1),
+    margin: theme.spacing(1),
   },
 }));
 
@@ -42,13 +42,14 @@ const Home = () => {
 
       <Grid item container xs={12} sm={12} md={8} lg={8} xl={8}>
         <Grid item container direction="column" className={classes.profileBox}>
+          <Typography variant="h6">Hi, my name is</Typography>
           <Hidden mdUp>
             <Typography variant="h5">Christian Arvie Benito</Typography>
           </Hidden>
           <Hidden smDown>
             <Typography variant="h4">Christian Arvie Benito</Typography>
           </Hidden>
-          <Typography variant="body1">Web Developer</Typography>
+          <Typography variant="body2" style={{ paddingTop: 15 }}>Web Developer</Typography>
         </Grid>
 
         <Grid item container spacing={1} className={classes.socialBox}>
