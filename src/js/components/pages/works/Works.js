@@ -3,8 +3,11 @@ import { Grid, Hidden, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    paddingTop: theme.spacing(5),
+  },
   sideTitle: {
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
     justifyContent: 'flex-start',
     [theme.breakpoints.down('sm')]: {
       alignItems: 'flex-start',
@@ -12,20 +15,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   gridPadding: {
-    padding: theme.spacing(5),
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(1),
-    },
+    padding: theme.spacing(1),
   },
 }));
 
-const About = () => {
+const Works = () => {
   const classes = useStyles();
 
   return (
-    <Grid item container xs={12} justifyContent="flex-start">
+    <Grid item container xs={12} justifyContent="flex-start" className={classes.root}>
       <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} className={`${classes.gridPadding} ${classes.sideTitle}`}>
-        <Typography variant="h6">About Me</Typography>
+        <Typography variant="h6">Works</Typography>
       </Grid>
 
       <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} className={classes.gridPadding}>
@@ -50,4 +50,4 @@ const About = () => {
   );
 }
 
-export default About;
+export default Works;

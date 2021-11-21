@@ -12,7 +12,10 @@ const useStyles = makeStyles((theme) => ({
   },
   avatarBox: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+    },
     padding: theme.spacing(1),
   },
   profileBox: {
@@ -49,18 +52,18 @@ const Home = () => {
           <Hidden smDown>
             <Typography variant="h4">Christian Arvie Benito</Typography>
           </Hidden>
-          <Typography variant="body2" style={{ paddingTop: 15 }}>Web Developer</Typography>
+          <Typography variant="body2" style={{ paddingTop: 15 }}>a web developer based in the Philippines.</Typography>
         </Grid>
 
         <Grid item container spacing={1} className={classes.socialBox}>
           <Grid item>
-            <IconButton size="small"><LinkedInIcon /></IconButton>
+            <IconButton size="small" onClick={() => window.open('https://github.com/arvieguadiz')}><GitHubIcon /></IconButton>
           </Grid>
           <Grid item>
-            <IconButton size="small"><GitHubIcon /></IconButton>
+            <IconButton size="small" onClick={() => window.open('https://www.linkedin.com/in/christian-arvie-benito-378399211/')}><LinkedInIcon /></IconButton>
           </Grid>
           <Grid item>
-            <IconButton size="small"><MailIcon /></IconButton>
+            <IconButton size="small" onClick={() => window.location.href = 'mailto:arvieguadiz@gmail.com'}><MailIcon /></IconButton>
           </Grid>
         </Grid>
       </Grid>
