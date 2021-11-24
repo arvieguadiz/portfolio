@@ -52,7 +52,7 @@ const Home = () => {
           <Hidden smDown>
             <Typography variant="h4">Christian Arvie Benito</Typography>
           </Hidden>
-          <Typography variant="body2" style={{ paddingTop: 15 }}>a web developer based in the Philippines.</Typography>
+          <Typography variant="body1" style={{ paddingTop: 15 }}>a web developer based in the Philippines.</Typography>
         </Grid>
 
         <Grid item container spacing={1} className={classes.socialBox}>

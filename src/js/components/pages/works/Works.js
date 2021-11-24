@@ -29,23 +29,24 @@ const Works = () => {
       </Grid>
 
       <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} className={classes.gridPadding}>
-        <Typography variant="body2">Age: 26</Typography>
-        <Typography variant="body2">Nationality: Filipino</Typography>
-        <Typography variant="body2">Religion: Roman Catholic</Typography>
+        {/* <Typography variant="body1">Age: 26</Typography>
+        <Typography variant="body1">Nationality: Filipino</Typography>
+        <Typography variant="body1">Religion: Roman Catholic</Typography>
         <Hidden mdUp>
-          <Typography variant="body2">Address: 032 Poblacion, Laoac, Pangasinan</Typography>
-          <Typography variant="body2">Phone: 0926 839 5843</Typography>
-          <Typography variant="body2">Email: arvieguadiz@gmail.com</Typography>
-        </Hidden>
+          <Typography variant="body1">Address: 032 Poblacion, Laoac, Pangasinan</Typography>
+          <Typography variant="body1">Phone: 0926 839 5843</Typography>
+          <Typography variant="body1">Email: arvieguadiz@gmail.com</Typography>
+        </Hidden> */}
+        WIP
       </Grid>
       
-      <Hidden smDown>
+      {/* <Hidden smDown>
         <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} className={classes.gridPadding}>
-          <Typography variant="body2">Address: 032 Poblacion, Laoac, Pangasinan</Typography>
-          <Typography variant="body2">Phone: 0926 839 5843</Typography>
-          <Typography variant="body2">Email: arvieguadiz@gmail.com</Typography>
+          <Typography variant="body1">Address: 032 Poblacion, Laoac, Pangasinan</Typography>
+          <Typography variant="body1">Phone: 0926 839 5843</Typography>
+          <Typography variant="body1">Email: arvieguadiz@gmail.com</Typography>
         </Grid>
-      </Hidden>
+      </Hidden> */}
     </Grid>
   );
 }
