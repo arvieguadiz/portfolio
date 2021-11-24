@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Grid, Tooltip, Typography, Zoom } from '@material-ui/core';
+import { Avatar, Box, Grid, LinearProgress, Tooltip, Typography, Zoom } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import laravelLogo from '../../../../images/logo/laravel.jpg';
@@ -66,6 +66,63 @@ const Skills = () => {
           <Typography variant="body1" style={{ fontWeight: 'bold' }}>Lipit Elementary School</Typography>
           <Typography variant="body2">Lipit Norte, Manaoag, Pangasinan</Typography>
         </Grid> */}
+
+        <Grid item container spacing={1}>
+          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+            <Typography variant="body1">Backend</Typography>
+            <Box className={classes.gridPadding}>
+              <Box>
+                <Typography variant="body2">PHP</Typography>
+              </Box>
+              <Box>
+                <LinearProgress variant="determinate" value={70} />
+              </Box>
+            </Box>
+            <Box className={classes.gridPadding}>
+              <Box>
+                <Typography variant="body2">Node.js</Typography>
+              </Box>
+              <Box>
+                <LinearProgress variant="determinate" value={80} />
+              </Box>
+            </Box>
+            <Box className={classes.gridPadding}>
+              <Box>
+                <Typography variant="body2">SQL</Typography>
+              </Box>
+              <Box>
+                <LinearProgress variant="determinate" value={85} />
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+            <Typography variant="body1">Frontend</Typography>
+            <Box className={classes.gridPadding}>
+              <Box>
+                <Typography variant="body2">HTML</Typography>
+              </Box>
+              <Box>
+                <LinearProgress variant="determinate" value={90} />
+              </Box>
+            </Box>
+            <Box className={classes.gridPadding}>
+              <Box>
+                <Typography variant="body2">CSS</Typography>
+              </Box>
+              <Box>
+                <LinearProgress variant="determinate" value={75} />
+              </Box>
+            </Box>
+            <Box className={classes.gridPadding}>
+              <Box>
+                <Typography variant="body2">JavaScript</Typography>
+              </Box>
+              <Box>
+                <LinearProgress variant="determinate" value={70} />
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
 
         <Grid item container spacing={1}>
           <Grid item xs={12}>
