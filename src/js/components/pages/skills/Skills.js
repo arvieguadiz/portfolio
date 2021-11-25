@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar, Box, Grid, LinearProgress, Tooltip, Typography, Zoom } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { map } from 'lodash';
 
 import laravelLogo from '../../../../images/logo/laravel.jpg';
 import nodeJsLogo from '../../../../images/logo/nodejs.png';
@@ -41,6 +42,40 @@ const useStyles = makeStyles((theme) => ({
 const Skills = () => {
   const classes = useStyles();
 
+  const backendSkills = [
+    { name: 'PHP', value: 70, },
+    { name: 'Node.js', value: 80, },
+    { name: 'SQL', value: 85, },
+  ];
+
+  const frontendSkills = [
+    { name: 'HTML', value: 90 },
+    { name: 'CSS', value: 75 },
+    { name: 'JavaScript', value: 70 },
+  ];
+
+  const mostlyUseTech = [
+    { name: 'Laravel', src: laravelLogo, },
+    { name: 'NodeJS', src: nodeJsLogo, },
+    { name: 'React', src: reactLogo, },
+  ];
+
+  const hadExperienceUsingTech = [
+    { name: 'WordPress', src: wordPressLogo },
+    { name: 'JQuery', src: jQueryLogo },
+    { name: 'Bootstrap', src: bootstrapLogo },
+    { name: 'Redis', src: redisLogo },
+    { name: 'NeDB', src: nedbLogo },
+    { name: 'ExpressJS', src: expressJsLogo },
+    { name: 'Docker', src: dockerLogo },
+    { name: 'Kohana', src: kohanaLogo },
+  ];
+
+  const wantToLearnTech = [
+    { name: 'React Native', src: reactNativeLogo },
+    { name: 'MongoDB', src: mongoDbLogo },
+  ];
+
   return (
     <Grid item container xs={12} justifyContent="flex-start" className={classes.root}>
       <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} className={`${classes.gridPadding} ${classes.sideTitle}`}>
@@ -70,57 +105,37 @@ const Skills = () => {
         <Grid item container spacing={1}>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <Typography variant="body1">Backend</Typography>
-            <Box className={classes.gridPadding}>
-              <Box>
-                <Typography variant="body2">PHP</Typography>
-              </Box>
-              <Box>
-                <LinearProgress variant="determinate" value={70} />
-              </Box>
-            </Box>
-            <Box className={classes.gridPadding}>
-              <Box>
-                <Typography variant="body2">Node.js</Typography>
-              </Box>
-              <Box>
-                <LinearProgress variant="determinate" value={80} />
-              </Box>
-            </Box>
-            <Box className={classes.gridPadding}>
-              <Box>
-                <Typography variant="body2">SQL</Typography>
-              </Box>
-              <Box>
-                <LinearProgress variant="determinate" value={85} />
-              </Box>
-            </Box>
+            {
+              map(backendSkills, (item, index) => {
+                return (
+                  <Box key={`item-${item.name}-${index}`} className={classes.gridPadding}>
+                    <Box>
+                      <Typography variant="body2">{item.name}</Typography>
+                    </Box>
+                    <Box>
+                      <LinearProgress variant="determinate" value={item.value} />
+                    </Box>
+                  </Box>
+                );
+              })
+            }
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <Typography variant="body1">Frontend</Typography>
-            <Box className={classes.gridPadding}>
-              <Box>
-                <Typography variant="body2">HTML</Typography>
-              </Box>
-              <Box>
-                <LinearProgress variant="determinate" value={90} />
-              </Box>
-            </Box>
-            <Box className={classes.gridPadding}>
-              <Box>
-                <Typography variant="body2">CSS</Typography>
-              </Box>
-              <Box>
-                <LinearProgress variant="determinate" value={75} />
-              </Box>
-            </Box>
-            <Box className={classes.gridPadding}>
-              <Box>
-                <Typography variant="body2">JavaScript</Typography>
-              </Box>
-              <Box>
-                <LinearProgress variant="determinate" value={70} />
-              </Box>
-            </Box>
+            {
+              map(frontendSkills, (item, index) => {
+                return (
+                  <Box key={`item-${item.name}-${index}`} className={classes.gridPadding}>
+                    <Box>
+                      <Typography variant="body2">{item.name}</Typography>
+                    </Box>
+                    <Box>
+                      <LinearProgress variant="determinate" value={item.value} />
+                    </Box>
+                  </Box>
+                );
+              })
+            }
           </Grid>
         </Grid>
 
@@ -128,83 +143,51 @@ const Skills = () => {
           <Grid item xs={12}>
             <Typography variant="body1">I mostly use</Typography>
           </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">Laravel</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="Laravel" src={laravelLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">NodeJS</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="NodeJS" src={nodeJsLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">React</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="React" src={reactLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
+          {
+            map(mostlyUseTech, (item, index) => {
+              return (
+                <Grid item key={`item-${item.name}-${index}`}>
+                  <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
+                    <Avatar alt={item.name} src={item.src} className={classes.avatar} />
+                  </Tooltip>
+                </Grid>
+              );
+            })
+          }
         </Grid>
 
         <Grid item container spacing={1}>
           <Grid item xs={12}>
             <Typography variant="body1">I had experience using</Typography>
           </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">WordPress</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="WordPress" src={wordPressLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">JQuery</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="JQuery" src={jQueryLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">Bootstrap</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="Bootstrap" src={bootstrapLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">Redis</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="Redis" src={redisLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">NeDB</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="NeDB" src={nedbLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">ExpressJS</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="ExpressJS" src={expressJsLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">Docker</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="Docker" src={dockerLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">Kohana</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="Kohana" src={kohanaLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
+          {
+            map(hadExperienceUsingTech, (item, index) => {
+              return (
+                <Grid item key={`item-${item.name}-${index}`}>
+                  <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
+                    <Avatar alt={item.name} src={item.src} className={classes.avatar} />
+                  </Tooltip>
+                </Grid>
+              );
+            })
+          }
         </Grid>
 
         <Grid item container spacing={1}>
           <Grid item xs={12}>
             <Typography variant="body1">I want to learn</Typography>
           </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">React Native</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="React Native" src={reactNativeLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
-          <Grid item>
-            <Tooltip title={<Typography variant="body2">MongoDB</Typography>} TransitionComponent={Zoom}>
-              <Avatar alt="MongoDB" src={mongoDbLogo} className={classes.avatar} />
-            </Tooltip>
-          </Grid>
+          {
+            map(wantToLearnTech, (item, index) => {
+              return (
+                <Grid item key={`item-${item.name}-${index}`}>
+                  <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
+                    <Avatar alt={item.name} src={item.src} className={classes.avatar} />
+                  </Tooltip>
+                </Grid>
+              );
+            })
+          }
         </Grid>
       </Grid>
     </Grid>

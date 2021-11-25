@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Box, CssBaseline, Grid, IconButton } from '@material-ui/core';
+import { Box, CssBaseline, Grid, IconButton, Tooltip, Typography, Zoom } from '@material-ui/core';
 import { Brightness4Rounded as Brightness4RoundedIcon, Brightness7Rounded as Brightness7RoundedIcon } from '@material-ui/icons';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
@@ -24,9 +24,11 @@ const Base = (props) => {
       <Grid container justifyContent="center">
         <Grid item container xs={11} sm={11} md={10} lg={8} xl={7} justifyContent="center">
           <Grid item container xs={12} justifyContent="flex-end">
-            <IconButton size="small" onClick={colorMode.toggleColorMode}>
-              { theme.palette.type === 'light' ? <Brightness4RoundedIcon /> : <Brightness7RoundedIcon /> }
-            </IconButton>
+            <Tooltip title={<Typography variant="body2">{theme.palette.type === 'light' ? 'Dark Mode' : 'Light Mode'}</Typography>} TransitionComponent={Zoom}>
+              <IconButton size="small" onClick={colorMode.toggleColorMode}>
+                { theme.palette.type === 'light' ? <Brightness4RoundedIcon /> : <Brightness7RoundedIcon /> }
+              </IconButton>
+            </Tooltip>
           </Grid>
           
           { children }

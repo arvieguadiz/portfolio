@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Grid, Hidden, IconButton, Typography } from '@material-ui/core';
+import { Avatar, Grid, Hidden, IconButton, Tooltip, Typography, Zoom } from '@material-ui/core';
 import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon, Mail as MailIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -57,13 +57,19 @@ const Home = () => {
 
         <Grid item container spacing={1} className={classes.socialBox}>
           <Grid item>
-            <IconButton size="small" onClick={() => window.open('https://github.com/arvieguadiz')}><GitHubIcon /></IconButton>
+            <Tooltip title={<Typography variant="body2">GitHub</Typography>} TransitionComponent={Zoom}>
+              <IconButton size="small" onClick={() => window.open('https://github.com/arvieguadiz')}><GitHubIcon /></IconButton>
+            </Tooltip>
           </Grid>
           <Grid item>
-            <IconButton size="small" onClick={() => window.open('https://www.linkedin.com/in/christian-arvie-benito-378399211/')}><LinkedInIcon /></IconButton>
+            <Tooltip title={<Typography variant="body2">LinkedIn</Typography>} TransitionComponent={Zoom}>
+              <IconButton size="small" onClick={() => window.open('https://www.linkedin.com/in/christian-arvie-benito-378399211/')}><LinkedInIcon /></IconButton>
+            </Tooltip>
           </Grid>
           <Grid item>
-            <IconButton size="small" onClick={() => window.location.href = 'mailto:arvieguadiz@gmail.com'}><MailIcon /></IconButton>
+            <Tooltip title={<Typography variant="body2">Email</Typography>} TransitionComponent={Zoom}>
+              <IconButton size="small" onClick={() => window.location.href = 'mailto:arvieguadiz@gmail.com'}><MailIcon /></IconButton>
+            </Tooltip>
           </Grid>
         </Grid>
       </Grid>
