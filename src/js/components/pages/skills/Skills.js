@@ -43,8 +43,8 @@ const Skills = () => {
   const classes = useStyles();
 
   const backendSkills = [
-    { name: 'PHP', value: 70, },
-    { name: 'Node.js', value: 80, },
+    { name: 'PHP', value: 75, },
+    { name: 'Node.js', value: 65, },
     { name: 'SQL', value: 85, },
   ];
 
@@ -113,7 +113,7 @@ const Skills = () => {
                       <Typography variant="body2">{item.name}</Typography>
                     </Box>
                     <Box>
-                      <LinearProgress variant="determinate" value={item.value} />
+                      <LinearProgress variant="determinate" value={item.value} style={{ height: 8, borderRadius: 3 }} />
                     </Box>
                   </Box>
                 );
@@ -130,7 +130,7 @@ const Skills = () => {
                       <Typography variant="body2">{item.name}</Typography>
                     </Box>
                     <Box>
-                      <LinearProgress variant="determinate" value={item.value} />
+                      <LinearProgress variant="determinate" value={item.value}  style={{ height: 8, borderRadius: 3 }} />
                     </Box>
                   </Box>
                 );
