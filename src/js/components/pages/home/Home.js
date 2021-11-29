@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Avatar, Grid, Hidden, IconButton, Tooltip, Typography, Zoom } from '@material-ui/core';
-import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon, Mail as MailIcon } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core/styles';
+import { Brightness4Rounded as Brightness4RoundedIcon, Brightness7Rounded as Brightness7RoundedIcon, GitHub as GitHubIcon, LinkedIn as LinkedInIcon, Mail as MailIcon } from '@material-ui/icons';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import profilePicture from '../../../../images/profile.jpg';
 
@@ -17,6 +17,13 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
     },
     padding: theme.spacing(1),
+  },
+  greetingBox: {
+    alignItems: 'flex-start',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+    },
+    margin: theme.spacing(1),
   },
   profileBox: {
     [theme.breakpoints.down('sm')]: {
@@ -34,8 +41,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home = () => {
+const Home = (props) => {
   const classes = useStyles();
+
+  const { ColorModeContext } = props;
+
+  const colorMode = useContext(ColorModeContext);
+  const theme = useTheme();
 
   return (
     <Grid item container xs={12} justifyContent="flex-start">
@@ -44,6 +56,15 @@ const Home = () => {
       </Grid>
 
       <Grid item container xs={12} sm={12} md={8} lg={8} xl={8}>
+        <Grid item container className={classes.greetingBox}>
+          <Typography variant="h6">Good day!</Typography>
+          <Tooltip title={<Typography variant="body2">{theme.palette.type === 'light' ? 'Dark Mode' : 'Light Mode'}</Typography>} TransitionComponent={Zoom}>
+            <IconButton size="small" onClick={colorMode.toggleColorMode}>
+              { theme.palette.type === 'light' ? <Brightness4RoundedIcon /> : <Brightness7RoundedIcon /> }
+            </IconButton>
+          </Tooltip>
+        </Grid>
+        
         <Grid item container direction="column" className={classes.profileBox}>
           <Typography variant="h6">Hi, my name is</Typography>
           <Hidden mdUp>

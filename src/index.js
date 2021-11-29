@@ -29,8 +29,9 @@ const App = () => {
     <React.Fragment>
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={mainTheme}>
-          <Base ColorModeContext={ColorModeContext}>
-            <Home />
+          {/* <Base ColorModeContext={ColorModeContext}> */}
+          <Base>
+            <Home ColorModeContext={ColorModeContext} />
             <Works />
             <Skills />
           </Base>
