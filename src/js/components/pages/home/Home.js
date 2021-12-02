@@ -20,23 +20,23 @@ const useStyles = makeStyles((theme) => ({
   },
   greetingBox: {
     alignItems: 'flex-start',
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   justifyContent: 'center',
+    // },
     margin: theme.spacing(1),
   },
   profileBox: {
-    [theme.breakpoints.down('sm')]: {
-      alignItems: 'center',
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   alignItems: 'center',
+    // },
     justifyContent: 'flex-end',
     margin: theme.spacing(1),
   },
   socialBox: {
     alignItems: 'flex-start',
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   justifyContent: 'center',
+    // },
     margin: theme.spacing(1),
   },
 }));
