@@ -9,6 +9,7 @@ import Base from './js/components/pages/Base';
 import Home from './js/components/pages/home/Home';
 import Works from './js/components/pages/works/Works'
 import Skills from './js/components/pages/skills/Skills';
+import About from './js/components/pages/about/About';
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -34,6 +35,7 @@ const App = () => {
             <Home ColorModeContext={ColorModeContext} />
             <Works />
             <Skills />
+            <About />
           </Base>
         </ThemeProvider>
       </ColorModeContext.Provider>
