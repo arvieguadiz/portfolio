@@ -1,25 +1,26 @@
 import React, { useContext } from 'react';
 import { Avatar, Grid, Hidden, IconButton, Tooltip, Typography, Zoom } from '@material-ui/core';
-import { Brightness4Rounded as Brightness4RoundedIcon, Brightness7Rounded as Brightness7RoundedIcon, GitHub as GitHubIcon, LinkedIn as LinkedInIcon, Mail as MailIcon } from '@material-ui/icons';
+import { Brightness4Rounded as Brightness4RoundedIcon, Brightness7Rounded as Brightness7RoundedIcon, GitHub as GitHubIcon, LinkedIn as LinkedInIcon, Mail as MailIcon, Twitter as TwitterIcon } from '@material-ui/icons';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import profilePicture from '../../../../images/profile.jpg';
+import profilePicture from '../../../../images/profile2.jpg';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
     width: theme.spacing(24),
-    height: theme.spacing(24),
+    height: theme.spacing(28),
   },
   avatarBox: {
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
-    },
+    justifyContent: 'center',
+    // [theme.breakpoints.down('sm')]: {
+    //   justifyContent: 'center',
+    // },
     padding: theme.spacing(1),
   },
   greetingBox: {
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
     // [theme.breakpoints.down('sm')]: {
     //   justifyContent: 'center',
     // },
@@ -29,11 +30,13 @@ const useStyles = makeStyles((theme) => ({
     // [theme.breakpoints.down('sm')]: {
     //   alignItems: 'center',
     // },
+    alignItems: 'flex-start',
     justifyContent: 'flex-end',
     margin: theme.spacing(1),
   },
   socialBox: {
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
     // [theme.breakpoints.down('sm')]: {
     //   justifyContent: 'center',
     // },
@@ -85,6 +88,11 @@ const Home = (props) => {
           <Grid item>
             <Tooltip title={<Typography variant="body2">LinkedIn</Typography>} TransitionComponent={Zoom}>
               <IconButton size="small" onClick={() => window.open('https://www.linkedin.com/in/christian-arvie-benito-378399211/')}><LinkedInIcon /></IconButton>
+            </Tooltip>
+          </Grid>
+          <Grid item>
+            <Tooltip title={<Typography variant="body2">Twitter</Typography>} TransitionComponent={Zoom}>
+              <IconButton size="small" onClick={() => window.open('https://twitter.com/ILoveAGuadiz')}><TwitterIcon /></IconButton>
             </Tooltip>
           </Grid>
           <Grid item>

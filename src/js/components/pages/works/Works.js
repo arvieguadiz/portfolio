@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Hidden, Typography } from '@material-ui/core';
+import { Divider, Grid, Hidden, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +26,9 @@ const Works = () => {
     <Grid item container xs={12} justifyContent="flex-start" className={classes.root}>
       <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} className={`${classes.gridPadding} ${classes.sideTitle}`}>
         <Typography variant="h6">Works</Typography>
+        <Hidden smDown>
+          <Divider width="100%" />
+        </Hidden>
       </Grid>
 
       <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} className={classes.gridPadding}>
