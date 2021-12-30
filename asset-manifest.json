@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/portfolio/static/js/main.ebd2b630.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.ebd2b630.chunk.js.map",
-    "runtime-main.js": "/portfolio/static/js/runtime-main.628e75c4.js",
-    "runtime-main.js.map": "/portfolio/static/js/runtime-main.628e75c4.js.map",
-    "static/js/2.cde8a5eb.chunk.js": "/portfolio/static/js/2.cde8a5eb.chunk.js",
-    "static/js/2.cde8a5eb.chunk.js.map": "/portfolio/static/js/2.cde8a5eb.chunk.js.map",
-    "static/js/3.cafdc5a3.chunk.js": "/portfolio/static/js/3.cafdc5a3.chunk.js",
-    "static/js/3.cafdc5a3.chunk.js.map": "/portfolio/static/js/3.cafdc5a3.chunk.js.map",
+    "main.js": "/portfolio/static/js/main.3f5a04fc.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.3f5a04fc.chunk.js.map",
+    "runtime-main.js": "/portfolio/static/js/runtime-main.74c829ad.js",
+    "runtime-main.js.map": "/portfolio/static/js/runtime-main.74c829ad.js.map",
+    "static/js/2.7bd2ecca.chunk.js": "/portfolio/static/js/2.7bd2ecca.chunk.js",
+    "static/js/2.7bd2ecca.chunk.js.map": "/portfolio/static/js/2.7bd2ecca.chunk.js.map",
+    "static/js/3.2d736ab3.chunk.js": "/portfolio/static/js/3.2d736ab3.chunk.js",
+    "static/js/3.2d736ab3.chunk.js.map": "/portfolio/static/js/3.2d736ab3.chunk.js.map",
     "index.html": "/portfolio/index.html",
-    "static/js/2.cde8a5eb.chunk.js.LICENSE.txt": "/portfolio/static/js/2.cde8a5eb.chunk.js.LICENSE.txt",
+    "static/js/2.7bd2ecca.chunk.js.LICENSE.txt": "/portfolio/static/js/2.7bd2ecca.chunk.js.LICENSE.txt",
     "static/media/bootstrap.1192728d.jpg": "/portfolio/static/media/bootstrap.1192728d.jpg",
     "static/media/docker.48d63a56.png": "/portfolio/static/media/docker.48d63a56.png",
     "static/media/expressjs.20299a12.png": "/portfolio/static/media/expressjs.20299a12.png",
@@ -18,15 +18,15 @@
     "static/media/mongodb.841acfc7.jpg": "/portfolio/static/media/mongodb.841acfc7.jpg",
     "static/media/nedb.3c5ab99a.png": "/portfolio/static/media/nedb.3c5ab99a.png",
     "static/media/nodejs.7d7b4f6e.png": "/portfolio/static/media/nodejs.7d7b4f6e.png",
-    "static/media/profile.1075ea19.jpg": "/portfolio/static/media/profile.1075ea19.jpg",
+    "static/media/profile2.d04909a2.jpg": "/portfolio/static/media/profile2.d04909a2.jpg",
     "static/media/react-native.1cf608a7.jpg": "/portfolio/static/media/react-native.1cf608a7.jpg",
     "static/media/react.27dc2769.jpg": "/portfolio/static/media/react.27dc2769.jpg",
     "static/media/redis.a00607ba.png": "/portfolio/static/media/redis.a00607ba.png",
     "static/media/wordpress.71e1ea4c.png": "/portfolio/static/media/wordpress.71e1ea4c.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.628e75c4.js",
-    "static/js/2.cde8a5eb.chunk.js",
-    "static/js/main.ebd2b630.chunk.js"
+    "static/js/runtime-main.74c829ad.js",
+    "static/js/2.7bd2ecca.chunk.js",
+    "static/js/main.3f5a04fc.chunk.js"
   ]
 }
