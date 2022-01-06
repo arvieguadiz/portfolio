@@ -76,7 +76,7 @@ const Home = (props) => {
           <Hidden smDown>
             <Typography variant="h4">Christian Arvie Benito</Typography>
           </Hidden>
-          <Typography variant="body1" style={{ paddingTop: 15 }}>a web developer based in the Philippines.</Typography>
+          <Typography variant="body1" style={{ paddingTop: 15 }}>a web developer from the Philippines.</Typography>
         </Grid>
 
         <Grid item container spacing={1} className={classes.socialBox}>

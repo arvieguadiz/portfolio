@@ -16,6 +16,7 @@ import dockerLogo from '../../../../images/logo/docker.png';
 import kohanaLogo from '../../../../images/logo/kohana.jpg';
 import reactNativeLogo from '../../../../images/logo/react-native.jpg';
 import mongoDbLogo from '../../../../images/logo/mongodb.jpg';
+import pythonLogo from '../../../../images/logo/python.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +46,7 @@ const Skills = () => {
   const backendSkills = [
     { name: 'PHP', value: 75, },
     { name: 'Node.js', value: 65, },
-    { name: 'SQL', value: 85, },
+    { name: 'SQL', value: 80, },
   ];
 
   const frontendSkills = [
@@ -60,19 +61,23 @@ const Skills = () => {
     { name: 'React', src: reactLogo, },
   ];
 
+  const stillImprovingTech = [
+    { name: 'Redis', src: redisLogo },
+    { name: 'Docker', src: dockerLogo },
+  ];
+
   const hadExperienceUsingTech = [
-    { name: 'WordPress', src: wordPressLogo },
     { name: 'JQuery', src: jQueryLogo },
     { name: 'Bootstrap', src: bootstrapLogo },
-    { name: 'Redis', src: redisLogo },
     { name: 'NeDB', src: nedbLogo },
     { name: 'ExpressJS', src: expressJsLogo },
-    { name: 'Docker', src: dockerLogo },
     { name: 'Kohana', src: kohanaLogo },
+    { name: 'WordPress', src: wordPressLogo },
   ];
 
   const wantToLearnTech = [
     { name: 'React Native', src: reactNativeLogo },
+    { name: 'Python', src: pythonLogo },
     { name: 'MongoDB', src: mongoDbLogo },
   ];
 
@@ -148,6 +153,23 @@ const Skills = () => {
           </Grid>
           {
             map(mostlyUseTech, (item, index) => {
+              return (
+                <Grid item key={`item-${item.name}-${index}`}>
+                  <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
+                    <Avatar alt={item.name} src={item.src} className={classes.avatar} />
+                  </Tooltip>
+                </Grid>
+              );
+            })
+          }
+        </Grid>
+
+        <Grid item container spacing={1}>
+          <Grid item xs={12}>
+            <Typography variant="body1">I am still improving on</Typography>
+          </Grid>
+          {
+            map(stillImprovingTech, (item, index) => {
               return (
                 <Grid item key={`item-${item.name}-${index}`}>
                   <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
