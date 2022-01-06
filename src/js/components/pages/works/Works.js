@@ -36,6 +36,8 @@ const Works = () => {
   const classes = useStyles();
 
   const workLists = [
+    { img: 'no-image', title: 'Project 1', subtitle: 'Project 1' },
+    { img: 'no-image', title: 'Project 2', subtitle: 'Project 2' },
     { img: 'no-image', title: 'LOOP Moderation Bridge', subtitle: 'LOOP Moderation Bridge' },
     { img: loopmod_01, title: 'LOOP Moderation', subtitle: 'Content Moderation' },
     { img: 'no-image', title: 'NMS Apps', subtitle: 'Interconnected Applications and Services' },
