@@ -1,9 +1,9 @@
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme } from '@mui/material/styles';
 
 const themeSettings = () => {
   const lightTheme = createTheme({
     palette: {
-      type: 'light',
+      mode: 'light',
     },
     typography: {
       h4: {
@@ -20,7 +20,7 @@ const themeSettings = () => {
   
   const darkTheme = createTheme({
     palette: {
-      type: 'dark',
+      mode: 'dark',
     },
     typography: {
       h4: {

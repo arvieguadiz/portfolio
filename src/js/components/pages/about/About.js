@@ -1,42 +1,38 @@
 import React from 'react';
-import { Divider, Grid, Hidden, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingTop: theme.spacing(5),
-  },
-  sideTitle: {
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    [theme.breakpoints.down('sm')]: {
-      alignItems: 'flex-start',
-      justifyContent: 'center',
-    },
-  },
-  gridPadding: {
-    padding: theme.spacing(1),
-  },
-  avatar: {
-    width: theme.spacing(8),
-    height: theme.spacing(8),
-    border: `2px solid ${theme.palette.text.disabled}`,
-  },
-}));
+import { Divider, Grid, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 const About = () => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const mdDownScreenSize = useMediaQuery(theme.breakpoints.down('md'));
+  
+  const classes = {
+    root: {
+      paddingTop: theme.spacing(5),
+    },
+    sideTitle: {
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
+      [theme.breakpoints.down('sm')]: {
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+      },
+    },
+    gridPadding: {
+      padding: theme.spacing(1),
+    },
+  };
 
   return (
-    <Grid item container xs={12} justifyContent="flex-start" className={classes.root}>
-      <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} className={`${classes.gridPadding} ${classes.sideTitle}`}>
+    <Grid item container xs={12} justifyContent="flex-start" sx={classes.root}>
+      <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} sx={{...classes.gridPadding, ...classes.sideTitle}}>
         <Typography variant="h6">About</Typography>
-        <Hidden smDown>
-          <Divider width="100%" />
-        </Hidden>
+        {
+          !mdDownScreenSize && <Divider width="100%" />
+        }
       </Grid>
 
-      <Grid item container spacing={3} xs={12} sm={12} md={8} lg={8} xl={8} className={classes.gridPadding}>
+      <Grid item container spacing={3} xs={12} sm={12} md={8} lg={8} xl={8} sx={classes.gridPadding}>
         <Grid item container spacing={1}>
           <Grid item xs={12}>
             <Typography variant="body1">This page was made with React and Material-UI.</Typography>
