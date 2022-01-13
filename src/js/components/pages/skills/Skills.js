@@ -1,6 +1,6 @@
 import React from 'react';
-import { Avatar, Box, Divider, Grid, Hidden, LinearProgress, Tooltip, Typography, Zoom } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Avatar, Box, Divider, Grid, LinearProgress, Tooltip, Typography, useMediaQuery, Zoom } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { map } from 'lodash';
 
 import laravelLogo from '../../../../images/logo/laravel.jpg';
@@ -16,32 +16,33 @@ import dockerLogo from '../../../../images/logo/docker.png';
 import kohanaLogo from '../../../../images/logo/kohana.jpg';
 import reactNativeLogo from '../../../../images/logo/react-native.jpg';
 import mongoDbLogo from '../../../../images/logo/mongodb.jpg';
-import pythonLogo from '../../../../images/logo/python.png'
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingTop: theme.spacing(5),
-  },
-  sideTitle: {
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    [theme.breakpoints.down('sm')]: {
-      alignItems: 'flex-start',
-      justifyContent: 'center',
-    },
-  },
-  gridPadding: {
-    padding: theme.spacing(1),
-  },
-  avatar: {
-    width: theme.spacing(8),
-    height: theme.spacing(8),
-    border: `2px solid ${theme.palette.text.disabled}`,
-  },
-}));
+import pythonLogo from '../../../../images/logo/python.png';
 
 const Skills = () => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const mdDownScreenSize = useMediaQuery(theme.breakpoints.down('md'));
+  
+  const classes = {
+    root: {
+      paddingTop: theme.spacing(5),
+    },
+    sideTitle: {
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
+      [theme.breakpoints.down('sm')]: {
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+      },
+    },
+    gridPadding: {
+      padding: theme.spacing(1),
+    },
+    avatar: {
+      width: theme.spacing(8),
+      height: theme.spacing(8),
+      border: `2px solid ${theme.palette.text.disabled}`,
+    },
+  };
 
   const backendSkills = [
     { name: 'PHP', value: 75, },
@@ -81,47 +82,51 @@ const Skills = () => {
     { name: 'MongoDB', src: mongoDbLogo },
   ];
 
+  const SkillListFunc = (props) => {
+    const { title, data } = props;
+
+    return (
+      <Grid item container spacing={1}>
+        <Grid item xs={12}>
+          <Typography variant="body1">{title}</Typography>
+        </Grid>
+        {
+          map(data, (item, index) => {
+            return (
+              <Grid item key={`item-${item.name}-${index}`}>
+                <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
+                  <Avatar alt={item.name} src={item.src} sx={classes.avatar} />
+                </Tooltip>
+              </Grid>
+            );
+          })
+        }
+      </Grid>
+    );
+  };
+
   return (
-    <Grid item container xs={12} justifyContent="flex-start" className={classes.root}>
-      <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} className={`${classes.gridPadding} ${classes.sideTitle}`}>
+    <Grid item container xs={12} justifyContent="flex-start" sx={classes.root}>
+      <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} sx={{...classes.gridPadding, ...classes.sideTitle}}>
         <Typography variant="h6">Skills</Typography>
-        <Hidden smDown>
-          <Divider width="100%" />
-        </Hidden>
+        {
+          !mdDownScreenSize && <Divider width="100%" />
+        }
       </Grid>
 
-      <Grid item container spacing={3} xs={12} sm={12} md={8} lg={8} xl={8} className={classes.gridPadding}>
-        {/* <Grid item container direction="column">
-          <Typography variant="body2">2014 - 2018</Typography>
-          <Typography variant="body1" style={{ fontWeight: 'bold' }}>Pangasinan State University</Typography>
-          <Typography variant="body2">San Vicente, Urdaneta City, Pangasinan</Typography>
-          <Typography variant="body1">Bachelor of Science in Information Technology</Typography>
-        </Grid>
-        
-        <Grid item container direction="column">
-          <Typography variant="body2">2008 - 2012</Typography>
-          <Typography variant="body1" style={{ fontWeight: 'bold' }}>Laoac National High School</Typography>
-          <Typography variant="body2">Poblacion, Laoac, Pangasinan</Typography>
-        </Grid>
-        
-        <Grid item container direction="column">
-          <Typography variant="body2">2002 - 2008</Typography>
-          <Typography variant="body1" style={{ fontWeight: 'bold' }}>Lipit Elementary School</Typography>
-          <Typography variant="body2">Lipit Norte, Manaoag, Pangasinan</Typography>
-        </Grid> */}
-
+      <Grid item container spacing={3} xs={12} sm={12} md={8} lg={8} xl={8} sx={classes.gridPadding}>
         <Grid item container spacing={1}>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <Typography variant="body1">Backend</Typography>
             {
               map(backendSkills, (item, index) => {
                 return (
-                  <Box key={`item-${item.name}-${index}`} className={classes.gridPadding}>
+                  <Box key={`item-${item.name}-${index}`} sx={classes.gridPadding}>
                     <Box>
                       <Typography variant="body2">{item.name}</Typography>
                     </Box>
                     <Box>
-                      <LinearProgress variant="determinate" value={item.value} style={{ height: 8, borderRadius: 3 }} />
+                      <LinearProgress variant="determinate" value={item.value} sx={{ height: 8, borderRadius: 3 }} />
                     </Box>
                   </Box>
                 );
@@ -133,12 +138,12 @@ const Skills = () => {
             {
               map(frontendSkills, (item, index) => {
                 return (
-                  <Box key={`item-${item.name}-${index}`} className={classes.gridPadding}>
+                  <Box key={`item-${item.name}-${index}`} sx={classes.gridPadding}>
                     <Box>
                       <Typography variant="body2">{item.name}</Typography>
                     </Box>
                     <Box>
-                      <LinearProgress variant="determinate" value={item.value}  style={{ height: 8, borderRadius: 3 }} />
+                      <LinearProgress variant="determinate" value={item.value} sx={{ height: 8, borderRadius: 3 }} />
                     </Box>
                   </Box>
                 );
@@ -147,73 +152,10 @@ const Skills = () => {
           </Grid>
         </Grid>
 
-        <Grid item container spacing={1}>
-          <Grid item xs={12}>
-            <Typography variant="body1">I mostly use</Typography>
-          </Grid>
-          {
-            map(mostlyUseTech, (item, index) => {
-              return (
-                <Grid item key={`item-${item.name}-${index}`}>
-                  <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
-                    <Avatar alt={item.name} src={item.src} className={classes.avatar} />
-                  </Tooltip>
-                </Grid>
-              );
-            })
-          }
-        </Grid>
-
-        <Grid item container spacing={1}>
-          <Grid item xs={12}>
-            <Typography variant="body1">I am still improving on</Typography>
-          </Grid>
-          {
-            map(stillImprovingTech, (item, index) => {
-              return (
-                <Grid item key={`item-${item.name}-${index}`}>
-                  <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
-                    <Avatar alt={item.name} src={item.src} className={classes.avatar} />
-                  </Tooltip>
-                </Grid>
-              );
-            })
-          }
-        </Grid>
-
-        <Grid item container spacing={1}>
-          <Grid item xs={12}>
-            <Typography variant="body1">I had experience using</Typography>
-          </Grid>
-          {
-            map(hadExperienceUsingTech, (item, index) => {
-              return (
-                <Grid item key={`item-${item.name}-${index}`}>
-                  <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
-                    <Avatar alt={item.name} src={item.src} className={classes.avatar} />
-                  </Tooltip>
-                </Grid>
-              );
-            })
-          }
-        </Grid>
-
-        <Grid item container spacing={1}>
-          <Grid item xs={12}>
-            <Typography variant="body1">I want to learn</Typography>
-          </Grid>
-          {
-            map(wantToLearnTech, (item, index) => {
-              return (
-                <Grid item key={`item-${item.name}-${index}`}>
-                  <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
-                    <Avatar alt={item.name} src={item.src} className={classes.avatar} />
-                  </Tooltip>
-                </Grid>
-              );
-            })
-          }
-        </Grid>
+        <SkillListFunc title="I mostly use" data={mostlyUseTech} />
+        <SkillListFunc title="I am still improving on" data={stillImprovingTech} />
+        <SkillListFunc title="I had experience using" data={hadExperienceUsingTech} />
+        <SkillListFunc title="I want to learn" data={wantToLearnTech} />
       </Grid>
     </Grid>
   );

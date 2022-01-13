@@ -1,25 +1,21 @@
 import React from 'react';
-import { Box, CssBaseline, Grid } from '@material-ui/core';
+import { Box, CssBaseline, Grid } from '@mui/material';
 // import { Brightness4Rounded as Brightness4RoundedIcon, Brightness7Rounded as Brightness7RoundedIcon } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(() => ({
-  root: {
-    display: 'flex',
-  },
-}));
 
 const Base = (props) => {
-  const classes = useStyles();
-
   const { children } = props;
   // const { children, ColorModeContext } = props;
   
   // const colorMode = useContext(ColorModeContext);
-  // const theme = useTheme();
+
+  const classes = {
+    root: {
+      display: 'flex',
+    },
+  };
 
   return (
-    <Box mt={5} mb={5} className={classes.root}>
+    <Box mt={5} mb={5} sx={classes.root}>
       <CssBaseline />
 
       <Grid container justifyContent="center">

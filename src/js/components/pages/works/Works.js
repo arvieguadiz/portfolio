@@ -1,50 +1,48 @@
 import React, { useState } from 'react';
-import { Box, Chip, Dialog, DialogContent, DialogTitle, Divider, Grid, Hidden, IconButton, ImageList, ImageListItem, ImageListItemBar, ListSubheader, Paper, Typography, useMediaQuery } from '@material-ui/core';
-import { Close as CloseIcon, Info as InfoIcon, PhotoLibrary as PhotoLibraryIcon } from '@material-ui/icons';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Box, Chip, Dialog, DialogContent, DialogTitle, Divider, Grid, IconButton, ImageList, ImageListItem, ImageListItemBar, ListSubheader, Paper, Typography, useMediaQuery } from '@mui/material';
+import { Close as CloseIcon, Info as InfoIcon, PhotoLibrary as PhotoLibraryIcon } from '@mui/icons-material';
+import { useTheme } from '@mui/material/styles';
 import Carousel from 'react-material-ui-carousel';
 import Image from 'material-ui-image';
 import { map } from 'lodash';
 
 import workLists from './workLists';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingTop: theme.spacing(5),
-  },
-  sideTitle: {
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    [theme.breakpoints.down('sm')]: {
-      alignItems: 'flex-start',
-      justifyContent: 'center',
-    },
-  },
-  gridPadding: {
-    padding: theme.spacing(1),
-  },
-  noImageGrid: {
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    border: '1px solid #000',
-  },
-  dialogTitleRoot: {
-    margin: 0,
-    padding: theme.spacing(2),
-  },
-  dialogCloseButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-  },
-}));
-
 const Works = () => {
-  const classes = useStyles();
-
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const smDownScreenSize = useMediaQuery(theme.breakpoints.down('sm'));
+  const mdDownScreenSize = useMediaQuery(theme.breakpoints.down('md'));
+  
+  const classes = {
+    root: {
+      paddingTop: theme.spacing(5),
+    },
+    sideTitle: {
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
+      [theme.breakpoints.down('sm')]: {
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+      },
+    },
+    gridPadding: {
+      padding: theme.spacing(1),
+    },
+    noImageGrid: {
+      height: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: '1px solid #000',
+    },
+    dialogTitleRoot: {
+      margin: 0,
+      padding: theme.spacing(2),
+    },
+    dialogCloseButton: {
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+    },
+  };
 
   const [ openWorkModal, setOpenWorkModal ] = useState(false);
   const [ selectedWork, setSelectedWork ] = useState({});
@@ -53,17 +51,17 @@ const Works = () => {
     const { cols } = props;
 
     return (
-      <ImageList rowHeight={180} cols={cols ? cols : 2}>
+      <ImageList rowHeight={180} cols={cols ? cols : 2} sx={{ overflow: 'hidden' }}>
         {/* <ImageListItem cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Hello</ListSubheader>
         </ImageListItem> */}
         {
           map(workLists, (item, index) => {
             return (
-              <ImageListItem key={`list-${item.thumbnail}-${index}`} onClick={() => handleWorkModalOpen(item)} style={{ cursor: 'pointer' }}>
+              <ImageListItem key={`list-${item.thumbnail}-${index}`} onClick={() => handleWorkModalOpen(item)} sx={{ cursor: 'pointer' }}>
                 {
                   item.thumbnail === 'no-image'
-                    ? <Grid container direction="column" className={classes.noImageGrid}>
+                    ? <Grid container direction="column" sx={classes.noImageGrid}>
                       <PhotoLibraryIcon color="disabled" style={{ fontSize: 60 }} />
                       <Typography color="textSecondary">No Available Image</Typography>
                     </Grid>
@@ -77,7 +75,7 @@ const Works = () => {
                       <InfoIcon />
                     </IconButton>
                   }
-                  style={{
+                  sx={{
                     background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
                   }}
                 />
@@ -99,14 +97,14 @@ const Works = () => {
   };
 
   const CustomDialogTitle = (props) => {
-    const { children, onClose, ...other } = props;
+    const { children, onClose } = props;
 
     return (
-      <DialogTitle {...other} className={classes.dialogTitleRoot}>
-        <Typography variant="h6">{children}</Typography>
+      <DialogTitle sx={classes.dialogTitleRoot}>
+        {children}
         {
           onClose ? (
-            <IconButton onClick={onClose} className={classes.dialogCloseButton}>
+            <IconButton onClick={onClose} sx={classes.dialogCloseButton} style={{ position: 'absolute', color: theme.palette.grey[500] }}>
               <CloseIcon />
             </IconButton>
           ) : null
@@ -116,23 +114,20 @@ const Works = () => {
   };
 
   return (
-    <Grid item container xs={12} justifyContent="flex-start" className={classes.root}>
-      <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} className={`${classes.gridPadding} ${classes.sideTitle}`}>
+    <Grid item container xs={12} justifyContent="flex-start" sx={classes.root}>
+      <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} sx={{...classes.gridPadding, ...classes.sideTitle}}>
         <Typography variant="h6">Works</Typography>
-        <Hidden smDown>
-          <Divider width="100%" />
-        </Hidden>
+        {
+          !mdDownScreenSize && <Divider width="100%" />
+        }
       </Grid>
 
-      <Grid item container spacing={3} xs={12} sm={12} md={8} lg={8} xl={8} className={classes.gridPadding}>
+      <Grid item container spacing={3} xs={12} sm={12} md={8} lg={8} xl={8} sx={classes.gridPadding}>
         <Grid item container spacing={1}>
           <Grid item xs={12}>
-            <Hidden xsDown>
-              <ImageListFunc />
-            </Hidden>
-            <Hidden smUp>
-              <ImageListFunc cols={1} />
-            </Hidden>
+            {
+              smDownScreenSize ? <ImageListFunc cols={1} /> : <ImageListFunc />
+            }
           </Grid>
         </Grid>
       </Grid>
@@ -140,11 +135,11 @@ const Works = () => {
       <Dialog
         fullWidth
         maxWidth="lg"
-        fullScreen={fullScreen}
+        fullScreen={smDownScreenSize}
         open={openWorkModal}
         onClose={handleWorkModalClose}
       >
-        <CustomDialogTitle disableTypography onClose={handleWorkModalClose}>
+        <CustomDialogTitle onClose={handleWorkModalClose}>
           {selectedWork.title}
         </CustomDialogTitle>
         <DialogContent>
@@ -152,7 +147,7 @@ const Works = () => {
             autoPlay={false}
             animation="slide"
             cycleNavigation={false}
-            navButtonsAlwaysVisible={!fullScreen}
+            navButtonsAlwaysVisible={!smDownScreenSize}
           >
             {
               map(selectedWork.images, (item, index) => {
@@ -176,7 +171,7 @@ const Works = () => {
             }
           </Carousel>
           <Grid container spacing={1}>
-            <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
+            <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
               <Typography variant="body1" style={{ fontWeight: 'bold' }}>Platform:</Typography>
               <Grid container spacing={1}>
                 {
@@ -190,7 +185,7 @@ const Works = () => {
                 }
               </Grid>
             </Grid>
-            <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
+            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
               <Typography variant="body1" style={{ fontWeight: 'bold' }}>Technology:</Typography>
               <Grid container spacing={1}>
                 {
