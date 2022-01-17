@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import themeSettings from './js/config/theme';
 import Base from './js/components/pages/Base';
 import Home from './js/components/pages/home/Home';
-import Works from './js/components/pages/works/Works'
+import Projects from './js/components/pages/projects/Projects';
 import Skills from './js/components/pages/skills/Skills';
 import About from './js/components/pages/about/About';
 
@@ -33,7 +33,7 @@ const App = () => {
           {/* <Base ColorModeContext={ColorModeContext}> */}
           <Base>
             <Home ColorModeContext={ColorModeContext} />
-            <Works />
+            <Projects />
             <Skills />
             <About />
           </Base>

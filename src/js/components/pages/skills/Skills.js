@@ -26,14 +26,6 @@ const Skills = () => {
     root: {
       paddingTop: theme.spacing(5),
     },
-    sideTitle: {
-      alignItems: 'flex-start',
-      justifyContent: 'flex-start',
-      [theme.breakpoints.down('sm')]: {
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-      },
-    },
     gridPadding: {
       padding: theme.spacing(1),
     },
@@ -41,6 +33,14 @@ const Skills = () => {
       width: theme.spacing(8),
       height: theme.spacing(8),
       border: `2px solid ${theme.palette.text.disabled}`,
+    },
+    divider: {
+      width: mdDownScreenSize ? '100%' : '75%',
+      border: 2,
+      borderColor: 'divider',
+      borderRadius: '2px',
+      mt: 5,
+      mb: 5,
     },
   };
 
@@ -106,16 +106,17 @@ const Skills = () => {
   };
 
   return (
-    <Grid item container xs={12} justifyContent="flex-start" sx={classes.root}>
-      <Grid item container direction="column" xs={12} sm={12} md={4} lg={4} xl={4} sx={{...classes.gridPadding, ...classes.sideTitle}}>
-        <Typography variant="h6">Skills</Typography>
-        {
-          !mdDownScreenSize && <Divider width="100%" />
-        }
+    <Grid container justifyContent="flex-end" sx={classes.root}>
+      <Grid item container direction="column" xs={12} sm={12} md={9} lg={9} xl={9}>
+        <Typography variant="h3">Skills</Typography>
+        <Typography variant="body1">Skills I've learned over time to this date.</Typography>
       </Grid>
 
-      <Grid item container spacing={3} xs={12} sm={12} md={8} lg={8} xl={8} sx={classes.gridPadding}>
-        <Grid item container spacing={1}>
+      <Divider sx={classes.divider} />
+      
+      <Grid item container xs={12} sm={12} md={9} lg={9} xl={9}>
+        <Typography variant="h5" gutterBottom>Overview</Typography>
+        <Grid item container spacing={2} sx={classes.gridPadding}>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <Typography variant="body1">Backend</Typography>
             {
@@ -151,11 +152,19 @@ const Skills = () => {
             }
           </Grid>
         </Grid>
+      </Grid>
 
-        <SkillListFunc title="I mostly use" data={mostlyUseTech} />
-        <SkillListFunc title="I am still improving on" data={stillImprovingTech} />
-        <SkillListFunc title="I had experience using" data={hadExperienceUsingTech} />
-        <SkillListFunc title="I want to learn" data={wantToLearnTech} />
+      <Divider sx={classes.divider} />
+      
+      <Grid item container xs={12} sm={12} md={9} lg={9} xl={9}>
+        <Typography variant="h5" gutterBottom>Language, Frameworks, Tools</Typography>
+
+        <Grid item container spacing={3} xs={12} sx={classes.gridPadding}>
+          <SkillListFunc title="I mostly use" data={mostlyUseTech} />
+          <SkillListFunc title="I am still improving on" data={stillImprovingTech} />
+          <SkillListFunc title="I had experience using" data={hadExperienceUsingTech} />
+          <SkillListFunc title="I want to learn" data={wantToLearnTech} />
+        </Grid>
       </Grid>
     </Grid>
   );
