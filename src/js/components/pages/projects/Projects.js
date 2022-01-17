@@ -10,7 +10,6 @@ import projectLists from './projectLists';
 
 const Projects = () => {
   const theme = useTheme();
-  const smDownScreenSize = useMediaQuery(theme.breakpoints.down('sm'));
   const mdDownScreenSize = useMediaQuery(theme.breakpoints.down('md'));
   
   const classes = {
@@ -158,7 +157,7 @@ const Projects = () => {
                             </Grid>
                             <Grid item sx={{ mt: 3, mb: 3 }}>
                               {
-                                map(item.responsibility.tasks, (item_task, index_task) => {
+                                map(item.responsibility?.tasks, (item_task, index_task) => {
                                   return (
                                     <Typography variant="body1" key={`task-${item_task}-${index_task}`} sx={{ fontSize: 20 }}>
                                       <ArrowForwardIosIcon sx={{ fontSize: 16 }} /> {item_task}
@@ -198,7 +197,7 @@ const Projects = () => {
       <Dialog
         fullWidth
         maxWidth="lg"
-        fullScreen={smDownScreenSize}
+        fullScreen={mdDownScreenSize}
         open={openProjectModal}
         onClose={handleProjectModalClose}
       >
@@ -206,69 +205,97 @@ const Projects = () => {
           {selectedProject.title}
         </CustomDialogTitle>
         <DialogContent>
-          <Carousel
-            autoPlay={false}
-            animation="slide"
-            cycleNavigation={false}
-            navButtonsAlwaysVisible={!smDownScreenSize}
-          >
-            {
-              map(selectedProject.images, (item, index) => {
-                return (
-                  <Paper key={`list-${item}-${index}`}>
-                    <Image
-                      src={item}
-                      aspectRatio={20/9}
-                      disableTransition
-                      color={theme.palette.background.paper}
-                      errorIcon={
-                        <Grid container direction="column" alignItems="center" justifyContent="center">
-                          <PhotoLibraryIcon color="disabled" style={{ fontSize: 60 }} />
-                          <Typography color="textSecondary">No Available Image</Typography>
-                        </Grid>
-                      }
-                    />
-                  </Paper>
-                );
-              })
-            }
-          </Carousel>
           <Grid container spacing={1}>
-            <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
-              <Typography variant="body1" style={{ fontWeight: 'bold' }}>Platform:</Typography>
-              <Grid container spacing={1}>
-                {
-                  map(selectedProject.platform, (item, index) => {
-                    return (
-                      <Grid item key={`chip-${item}-${index}`}>
-                        <Chip label={item} variant="outlined" />
-                      </Grid>
-                    );
-                  })
-                }
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-              <Typography variant="body1" style={{ fontWeight: 'bold' }}>Technology:</Typography>
-              <Grid container spacing={1}>
-                {
-                  map(selectedProject.technology, (item, index) => {
-                    return (
-                      <Grid item key={`chip-${item}-${index}`}>
-                      <Chip label={item} variant="outlined" />
-                      </Grid>
-                    );
-                  })
-                }
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-              <Typography variant="body1" style={{ fontWeight: 'bold' }}>Responsibility:</Typography>
-              <Box m={1}>
+            <Grid item container spacing={1} xs={12}>
+              <Grid item xs={12}>
                 <Typography variant="body1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  {selectedProject.subtitle}
                 </Typography>
-              </Box>
+              </Grid>
+              <Grid item container spacing={1} xs={12} sx={{ mt: 0.5, mb: 3 }}>
+                {
+                  map(selectedProject.responsibility?.tasks, (item_task, index_task) => {
+                    return (
+                      <Grid item key={`task-${item_task}-${index_task}`}>
+                        <Typography variant="body1">
+                          <ArrowForwardIosIcon sx={{ fontSize: 14 }} /> {item_task}
+                        </Typography>
+                      </Grid>
+                    );
+                  })
+                }
+              </Grid>
+            </Grid>
+
+            <Grid item container spacing={1} xs={12} sm={12} md={9} lg={9} xl={9}>
+              <Grid item xs={12}>
+                <Carousel
+                  autoPlay={false}
+                  animation="slide"
+                  cycleNavigation={false}
+                  navButtonsAlwaysVisible={!mdDownScreenSize}
+                >
+                  {
+                    map(selectedProject.images, (item, index) => {
+                      return (
+                        <Paper key={`list-${item}-${index}`}>
+                          <Image
+                            src={item}
+                            aspectRatio={16/9}
+                            disableTransition
+                            color={theme.palette.background.paper}
+                            errorIcon={
+                              <Grid container direction="column" alignItems="center" justifyContent="center">
+                                <PhotoLibraryIcon color="disabled" style={{ fontSize: 60 }} />
+                                <Typography color="textSecondary">No Available Image</Typography>
+                              </Grid>
+                            }
+                          />
+                        </Paper>
+                      );
+                    })
+                  }
+                </Carousel>
+              </Grid>
+            </Grid>
+
+            <Grid item container spacing={1} xs={12} sm={12} md={3} lg={3} xl={3}>
+              <Grid item xs={12}>
+                <Typography variant="body1" style={{ fontWeight: 'bold' }}>Platform:</Typography>
+                <Grid container spacing={0.5}>
+                  {
+                    map(selectedProject?.platform, (item, index) => {
+                      return (
+                        <Grid item key={`chip-${item}-${index}`}>
+                          <Chip label={item} variant="outlined" />
+                        </Grid>
+                      );
+                    })
+                  }
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="body1" style={{ fontWeight: 'bold' }}>Technology:</Typography>
+                <Grid container spacing={0.5}>
+                  {
+                    map(selectedProject?.technology, (item, index) => {
+                      return (
+                        <Grid item key={`chip-${item}-${index}`}>
+                          <Chip label={item} variant="outlined" />
+                        </Grid>
+                      );
+                    })
+                  }
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="body1" style={{ fontWeight: 'bold' }}>Responsibility:</Typography>
+                <Box m={1}>
+                  <Typography variant="body1">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </Typography>
+                </Box>
+              </Grid>
             </Grid>
           </Grid>
         </DialogContent>
