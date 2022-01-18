@@ -72,8 +72,9 @@ const Base = (props) => {
                 allowScrollButtonsMobile
                 sx={classes.tabsMain}
               >
-                <Tab label={mdDownScreenSize ? "Projects" : <Typography sx={{ fontWeight: 'bold' }}>Projects</Typography>} />
                 <Tab label={mdDownScreenSize ? "Skills" : <Typography sx={{ fontWeight: 'bold' }}>Skills</Typography>} />
+                <Tab label={mdDownScreenSize ? "Projects" : <Typography sx={{ fontWeight: 'bold' }}>Projects</Typography>} />
+                <Tab label={mdDownScreenSize ? "Contact" : <Typography sx={{ fontWeight: 'bold' }}>Contact</Typography>} />
                 <Tab label={mdDownScreenSize ? "About" : <Typography sx={{ fontWeight: 'bold' }}>About</Typography>} />
               </Tabs>
             </Box>

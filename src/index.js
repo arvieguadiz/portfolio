@@ -33,6 +33,7 @@ const App = () => {
           {/* <Base ColorModeContext={ColorModeContext}> */}
           <Base>
             <Home ColorModeContext={ColorModeContext} />
+            <Skills />
             <Projects />
             <Skills />
             <About />

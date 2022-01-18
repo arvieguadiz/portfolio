@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Card, CardContent, CardMedia, Chip, Dialog, DialogContent, DialogTitle, Divider, Grid, IconButton, ImageList, ImageListItem, ImageListItemBar, Link, Paper, Typography, useMediaQuery } from '@mui/material';
-import { ArrowForwardIos as ArrowForwardIosIcon, Close as CloseIcon, Info as InfoIcon, PhotoLibrary as PhotoLibraryIcon } from '@mui/icons-material';
+import { Box, Card, CardContent, Chip, Dialog, DialogContent, DialogTitle, Divider, Grid, IconButton, Link, Paper, Typography, useMediaQuery } from '@mui/material';
+import { ArrowForwardIos as ArrowForwardIosIcon, Close as CloseIcon, PhotoLibrary as PhotoLibraryIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import Carousel from 'react-material-ui-carousel';
 import Image from 'material-ui-image';
@@ -17,7 +17,7 @@ const Projects = () => {
       paddingTop: theme.spacing(5),
     },
     gridPadding: {
-      padding: theme.spacing(1),
+      padding: theme.spacing(0),
     },
     noImageGrid: {
       height: '100%',
@@ -45,43 +45,6 @@ const Projects = () => {
 
   const [ openProjectModal, setOpenProjectModal ] = useState(false);
   const [ selectedProject, setSelectedProject ] = useState({});
-
-  const ImageListFunc = (props) => {
-    const { cols } = props;
-
-    return (
-      <ImageList rowHeight={180} cols={cols ? cols : 2} sx={{ overflow: 'hidden' }}>
-        {
-          map(projectLists, (item, index) => {
-            return (
-              <ImageListItem key={`list-${item.thumbnail}-${index}`} onClick={() => handleProjectModalOpen(item)} sx={{ cursor: 'pointer' }}>
-                {
-                  item.thumbnail === 'no-image'
-                    ? <Grid container direction="column" sx={classes.noImageGrid}>
-                      <PhotoLibraryIcon color="disabled" style={{ fontSize: 60 }} />
-                      <Typography color="textSecondary">No Available Image</Typography>
-                    </Grid>
-                    : <img src={item.thumbnail} alt={item.title} />
-                }
-                <ImageListItemBar
-                  title={item.title}
-                  subtitle={item.subtitle}
-                  actionIcon={
-                    <IconButton onClick={() => handleProjectModalOpen(item)}>
-                      <InfoIcon />
-                    </IconButton>
-                  }
-                  sx={{
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-                  }}
-                />
-              </ImageListItem>
-            );
-          })
-        }
-      </ImageList>
-    );
-  };
 
   const handleProjectModalOpen = (item) => {
     setOpenProjectModal(true);
@@ -117,19 +80,11 @@ const Projects = () => {
             return (
               <Grid item container spacing={2} key={`list-${item.title}-${index}`} sx={classes.gridPadding}>
                 <Grid item xs={12}>
-                  {/* {
-                    smDownScreenSize ? <ImageListFunc cols={1} /> : <ImageListFunc />
-                  } */}
                   <Card variant="outlined" sx={{ p: 2, pb: theme.spacing(3), border: 'none' }}>
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={7} md={7} lg={7} xl={7}>
                         <Card raised>
                           <CardContent sx={{ p: 0 }} style={{ paddingBottom: 0 }}>
-                            {/* <CardMedia
-                              component="img"
-                              image={item.thumbnail}
-                              alt={item.title}
-                            /> */}
                             <Image
                               src={item.thumbnail}
                               aspectRatio={4/5}
@@ -147,27 +102,27 @@ const Projects = () => {
                       </Grid>
 
                       <Grid item container alignItems="center" xs={12} sm={5} md={5} lg={5} xl={5}>
-                        <CardContent>
+                        <CardContent sx={{ [theme.breakpoints.down('md')]: { p: 0 } }}>
                           <Grid container direction="column" spacing={1}>
                             <Grid item>
-                              <Typography variant="h5" sx={{ fontSize: 28 }}>{item.title}</Typography>
+                              <Typography variant="h5" sx={{ fontSize: 28, [theme.breakpoints.down('md')]: { fontSize: 24 } }}>{item.title}</Typography>
                             </Grid>
                             <Grid item>
-                              <Typography variant="body1" sx={{ fontSize: 18 }}>{item.subtitle}</Typography>
+                              <Typography variant="body1" sx={{ fontSize: 18, [theme.breakpoints.down('md')]: { fontSize: 16 } }}>{item.subtitle}</Typography>
                             </Grid>
                             <Grid item sx={{ mt: 3, mb: 3 }}>
                               {
                                 map(item.responsibility?.tasks, (item_task, index_task) => {
                                   return (
-                                    <Typography variant="body1" key={`task-${item_task}-${index_task}`} sx={{ fontSize: 20 }}>
-                                      <ArrowForwardIosIcon sx={{ fontSize: 16 }} /> {item_task}
+                                    <Typography variant="body1" key={`task-${item_task}-${index_task}`} sx={{ fontSize: 20, [theme.breakpoints.down('md')]: { fontSize: 18 } }}>
+                                      <ArrowForwardIosIcon sx={{ fontSize: 16, [theme.breakpoints.down('md')]: { fontSize: 14 } }} /> {item_task}
                                     </Typography>
                                   );
                                 })
                               }
                             </Grid>
                             <Grid item container justifyContent="flex-start">
-                              <Link component="button" variant="body2" underline="hover" onClick={() => handleProjectModalOpen(item)} sx={{ fontSize: 18 }}>View Details →</Link>
+                              <Link component="button" variant="body2" underline="hover" onClick={() => handleProjectModalOpen(item)} sx={{ fontSize: 18, [theme.breakpoints.down('md')]: { fontSize: 16 } }}>View Details →</Link>
                             </Grid>
                           </Grid>
                         </CardContent>
