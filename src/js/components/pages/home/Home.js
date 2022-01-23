@@ -83,7 +83,7 @@ const Home = (props) => {
           </Grid>
           <Grid item>
             <Tooltip title={<Typography variant="body2">Twitter</Typography>} TransitionComponent={Zoom}>
-              <IconButton size="small" onClick={() => window.open('https://twitter.com/ILoveAGuadiz')}><TwitterIcon /></IconButton>
+              <IconButton size="small" onClick={() => window.open('https://twitter.com/arvieguadiz')}><TwitterIcon /></IconButton>
             </Tooltip>
           </Grid>
           <Grid item>

@@ -1,3 +1,10 @@
+import todo_thumbnail from '../../../../images/todo/todo_thumbnail.png';
+import todo_01 from '../../../../images/todo/todo_01.png';
+import todo_03 from '../../../../images/todo/todo_03.png';
+import todo_05 from '../../../../images/todo/todo_05.png';
+import todo_07 from '../../../../images/todo/todo_07.png';
+import todo_09 from '../../../../images/todo/todo_09.png';
+
 import loopmod_thumbnail from '../../../../images/loopmod_thumbnail.png';
 import loopmod_01 from '../../../../images/loopmod_01.png';
 import loopmod_02 from '../../../../images/loopmod_02.png';
@@ -44,17 +51,17 @@ const projectLists = [
     ]
   },
   {
-    thumbnail: 'no_image',
-    title: 'Project 2',
-    subtitle: 'Project 2',
-    platform: [],
-    technology: [],
+    thumbnail: todo_thumbnail,
+    title: 'To Do App',
+    subtitle: 'To Do App',
+    platform: ['Web'],
+    technology: ['React'],
     responsibility: {
-      tasks: [],
+      tasks: ['Backend Development', 'Frontend Development'],
       desc: '',
     },
     images: [
-      'no_image',
+      todo_01, todo_03, todo_09, todo_05, todo_07,
     ]
   },
   {
