@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Avatar, Grid, IconButton, Tooltip, Typography, useMediaQuery, Zoom } from '@mui/material';
-import { Brightness4Rounded as Brightness4RoundedIcon, Brightness7Rounded as Brightness7RoundedIcon, GitHub as GitHubIcon, LinkedIn as LinkedInIcon, Mail as MailIcon, Twitter as TwitterIcon } from '@mui/icons-material';
+import { Brightness4Rounded as Brightness4RoundedIcon, Brightness7Rounded as Brightness7RoundedIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 
 import profilePicture from '../../../../images/profile2.jpg';

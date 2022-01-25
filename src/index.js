@@ -7,8 +7,9 @@ import reportWebVitals from './reportWebVitals';
 import themeSettings from './js/config/theme';
 import Base from './js/components/pages/Base';
 import Home from './js/components/pages/home/Home';
-import Projects from './js/components/pages/projects/Projects';
 import Skills from './js/components/pages/skills/Skills';
+import Projects from './js/components/pages/projects/Projects';
+import Contact from './js/components/pages/contact/Contact';
 import About from './js/components/pages/about/About';
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
@@ -35,7 +36,7 @@ const App = () => {
             <Home ColorModeContext={ColorModeContext} />
             <Skills />
             <Projects />
-            <Skills />
+            <Contact />
             <About />
           </Base>
         </ThemeProvider>
