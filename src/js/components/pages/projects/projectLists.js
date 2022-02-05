@@ -33,8 +33,6 @@ import msb_04 from '../../../../images/msb_04.png';
 import ocrms_thumbnail from '../../../../images/ocrms_thumbnail.png';
 import ocrms_01 from '../../../../images/ocrms_01.png';
 
-// import no_image from '../../../../images/no_image.png';
-
 const projectLists = [
   {
     thumbnail: todo_thumbnail,

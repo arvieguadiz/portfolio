@@ -7,6 +7,8 @@ import Image from 'material-ui-image';
 import { map } from 'lodash';
 
 import projectLists from './projectLists';
+import no_image_light from '../../../../images/no_image_light.png';
+import no_image_dark from '../../../../images/no_image_dark.png';
 
 const Projects = () => {
   const theme = useTheme();
@@ -86,7 +88,13 @@ const Projects = () => {
                         <Card raised>
                           <CardContent sx={{ p: 0 }} style={{ paddingBottom: 0 }}>
                             <Image
-                              src={item.thumbnail}
+                              src={
+                                item.thumbnail === 'no_image'
+                                  ? theme.palette.mode === 'light'
+                                    ? no_image_light
+                                    : no_image_dark
+                                  : item.thumbnail
+                              }
                               aspectRatio={4/5}
                               disableTransition
                               color={theme.palette.background.paper}
@@ -195,7 +203,13 @@ const Projects = () => {
                       return (
                         <Paper key={`list-${item}-${index}`}>
                           <Image
-                            src={item}
+                            src={
+                              item === 'no_image'
+                                ? theme.palette.mode === 'light'
+                                  ? no_image_light
+                                  : no_image_dark
+                                : item
+                            }
                             aspectRatio={16/9}
                             disableTransition
                             color={theme.palette.background.paper}

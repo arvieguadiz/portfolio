@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Box, Divider, Grid, LinearProgress, Tooltip, Typography, useMediaQuery, Zoom } from '@mui/material';
+import { Avatar, Box, Divider, Grid, LinearProgress, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { map } from 'lodash';
 
@@ -93,10 +93,15 @@ const Skills = () => {
         {
           map(data, (item, index) => {
             return (
-              <Grid item key={`item-${item.name}-${index}`}>
-                <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
-                  <Avatar alt={item.name} src={item.src} sx={classes.avatar} />
-                </Tooltip>
+              <Grid item xs={6} sm={4} md={4} lg={3} xl={3} key={`item-${item.name}-${index}`}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Box>
+                    <Avatar alt={item.name} src={item.src} sx={classes.avatar} />
+                  </Box>
+                  <Box sx={{ ml: 1 }}>
+                    <Typography variant="body2">{item.name}</Typography>
+                  </Box>
+                </Box>
               </Grid>
             );
           })
@@ -126,8 +131,13 @@ const Skills = () => {
                     <Box>
                       <Typography variant="body2">{item.name}</Typography>
                     </Box>
-                    <Box>
-                      <LinearProgress variant="determinate" value={item.value} sx={{ height: 8, borderRadius: 3 }} />
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Box sx={{ width: '100%' }}>
+                        <LinearProgress variant="determinate" value={item.value} sx={{ height: 15, borderRadius: 1 }} />
+                      </Box>
+                      <Box sx={{ ml: 1, minWidth: 35 }}>
+                        <Typography variant="body2">{`${item.value}%`}</Typography>
+                      </Box>
                     </Box>
                   </Box>
                 );
@@ -143,8 +153,13 @@ const Skills = () => {
                     <Box>
                       <Typography variant="body2">{item.name}</Typography>
                     </Box>
-                    <Box>
-                      <LinearProgress variant="determinate" value={item.value} sx={{ height: 8, borderRadius: 3 }} />
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Box sx={{ width: '100%' }}>
+                        <LinearProgress variant="determinate" value={item.value} sx={{ height: 15, borderRadius: 1 }} />
+                      </Box>
+                      <Box sx={{ ml: 1, minWidth: 35 }}>
+                        <Typography variant="body2">{`${item.value}%`}</Typography>
+                      </Box>
                     </Box>
                   </Box>
                 );

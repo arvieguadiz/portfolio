@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Divider, Grid, IconButton, Tooltip, Typography, useMediaQuery, Zoom } from '@mui/material';
+import { Avatar, Box, Divider, Grid, IconButton, Tooltip, Typography, useMediaQuery, Zoom } from '@mui/material';
 import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon, Mail as MailIcon, Twitter as TwitterIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import { map } from 'lodash';
@@ -54,12 +54,19 @@ const Skills = () => {
         {
           map(data, (item, index) => {
             return (
-              <Grid item key={`item-${item.name}-${index}`}>
-                <Tooltip title={<Typography variant="body2">{item.name}</Typography>} TransitionComponent={Zoom}>
-                  <IconButton size="small" onClick={() => item.name === 'Email' ? window.location.href = item.link : window.open(item.link)}>
-                    <Avatar sx={classes.avatar}>{item.icon}</Avatar>
-                  </IconButton>
-                </Tooltip>
+              <Grid item xs={6} sm={4} md={4} lg={3} xl={3} key={`item-${item.name}-${index}`}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Box>
+                    <Tooltip title={<Typography variant="body2">{item.name === 'Email' ? `Send ${item.name}` : `Go to ${item.name}`}</Typography>} TransitionComponent={Zoom}>
+                      <IconButton size="small" onClick={() => item.name === 'Email' ? window.location.href = item.link : window.open(item.link)}>
+                        <Avatar sx={classes.avatar}>{item.icon}</Avatar>
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                  <Box sx={{ ml: 1 }}>
+                    <Typography variant="body2">{item.name}</Typography>
+                  </Box>
+                </Box>
               </Grid>
             );
           })

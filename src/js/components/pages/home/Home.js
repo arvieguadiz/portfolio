@@ -3,7 +3,8 @@ import { Avatar, Grid, IconButton, Tooltip, Typography, useMediaQuery, Zoom } fr
 import { Brightness4Rounded as Brightness4RoundedIcon, Brightness7Rounded as Brightness7RoundedIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 
-import profilePicture from '../../../../images/profile2.jpg';
+import profilePicture from '../../../../images/profile.jpg';
+import profilePicture2 from '../../../../images/profile2.jpg';
 
 const Home = (props) => {
   const { ColorModeContext } = props;
@@ -51,7 +52,7 @@ const Home = (props) => {
   return (
     <Grid item container xs={12} justifyContent="flex-start">
       <Grid item container xs={12} sm={12} md={3} lg={3} xl={3} sx={classes.avatarBox}>
-        <Avatar src={profilePicture} sx={{ width: mdDownScreenSize ? theme.spacing(14) : theme.spacing(18), height: mdDownScreenSize ? theme.spacing(14) : theme.spacing(18) }} />
+        <Avatar src={theme.palette.mode === 'light' ? profilePicture : profilePicture2} sx={{ width: mdDownScreenSize ? theme.spacing(14) : theme.spacing(18), height: mdDownScreenSize ? theme.spacing(14) : theme.spacing(18) }} />
       </Grid>
 
       <Grid item container xs={12} sm={12} md={9} lg={9} xl={9}>
