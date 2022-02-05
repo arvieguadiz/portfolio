@@ -37,25 +37,11 @@ import ocrms_01 from '../../../../images/ocrms_01.png';
 
 const projectLists = [
   {
-    thumbnail: 'no_image',
-    title: 'Project 1',
-    subtitle: 'Project 1',
-    platform: [],
-    technology: [],
-    responsibility: {
-      tasks: [],
-      desc: '',
-    },
-    images: [
-      'no_image',
-    ]
-  },
-  {
     thumbnail: todo_thumbnail,
     title: 'To Do App',
-    subtitle: 'To Do App',
+    subtitle: 'A simple To Do App but packs with all the features you need to get things done.',
     platform: ['Web'],
-    technology: ['React'],
+    technology: ['Node.js', 'React', 'NeDB', 'Material UI v5'],
     responsibility: {
       tasks: ['Backend Development', 'Frontend Development'],
       desc: '',
@@ -67,7 +53,7 @@ const projectLists = [
   {
     thumbnail: 'no_image',
     title: 'LOOP Moderation Bridge',
-    subtitle: 'LOOP Moderation Bridge',
+    subtitle: 'LOOP Moderation Bridge is a back-end application that connects or acts as bridge between the LOOP Moderation and the client\'s application through APIs.',
     platform: ['Server'],
     technology: ['PHP'],
     responsibility: {
@@ -81,7 +67,7 @@ const projectLists = [
   {
     thumbnail: loopmod_thumbnail,
     title: 'LOOP Moderation',
-    subtitle: 'Content Moderation',
+    subtitle: 'A web application that accepts and is responsible for text, image and video moderation from different clients with the use of API.',
     platform: ['Web'],
     technology: ['Laravel', 'Node.js', 'React', 'Redis', 'SQL', 'NeDB', 'Socket.io', 'Docker'],
     responsibility: {
@@ -95,7 +81,7 @@ const projectLists = [
   {
     thumbnail: nmsapps_thumbnail,
     title: 'NMS Apps',
-    subtitle: 'Interconnected Applications and Services',
+    subtitle: 'Lists of Interconnected Applications and Services such as Platform Authentication, User Management, Human Resources, Attendance Tracking and Financial Tools.',
     platform: ['Web'],
     technology: ['Laravel', 'Node.js', 'React', 'Redis', 'SQL', 'NeDB', 'Socket.io'],
     responsibility: {
@@ -109,7 +95,7 @@ const projectLists = [
   {
     thumbnail: loopim_thumbnail,
     title: 'LOOP IM',
-    subtitle: 'Instant Messaging',
+    subtitle: 'An Instant Messaging Platform that handles large traffic data from different clients with the use of API.',
     platform: ['Web'],
     technology: ['Laravel', 'Node.js', 'AngularJS', 'Redis', 'SQL', 'NeDB', 'Socket.io'],
     responsibility: {
@@ -123,7 +109,7 @@ const projectLists = [
   {
     thumbnail: msb_thumbnail,
     title: 'MSB Image Review',
-    subtitle: 'OJT System',
+    subtitle: 'OJT System: A training platform for new applicants that is responsible for plate number image review for their training, a platform similar to that used in production.',
     platform: ['Web', 'Desktop'],
     technology: ['C#', 'ASP.NET', 'JavaScript', 'Bootstrap', 'jQuery', 'SQL'],
     responsibility: {
@@ -137,11 +123,11 @@ const projectLists = [
   {
     thumbnail: ocrms_thumbnail,
     title: 'E-Police OCRMS',
-    subtitle: 'Thesis System',
+    subtitle: 'Thesis System: E-Police OCRMS or E-Police Online Crime Record Management System for the PNP of the province of Pangasinan.',
     platform: ['Web', 'Desktop'],
     technology: ['PHP', 'JavaScript', 'jQuery', 'Bootstrap', 'SQL', 'C#'],
     responsibility: {
-      tasks: ['Web App Development Lead', 'Backend Development', 'Frontend Development'],
+      tasks: ['Web App Development Lead', 'Web App Design', 'Backend Development', 'Frontend Development'],
       desc: '',
     },
     images: [

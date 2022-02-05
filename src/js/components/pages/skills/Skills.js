@@ -51,7 +51,7 @@ const Skills = () => {
   ];
 
   const frontendSkills = [
-    { name: 'HTML', value: 90 },
+    { name: 'HTML', value: 85 },
     { name: 'CSS', value: 75 },
     { name: 'JavaScript', value: 70 },
   ];
