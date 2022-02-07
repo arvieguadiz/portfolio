@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, CssBaseline, Grid, Tab, Typography, useMediaQuery } from '@mui/material';
+import { Box, CssBaseline, Fab, Grid, Tab, Tooltip, Typography, useMediaQuery, useScrollTrigger, Zoom } from '@mui/material';
+import { KeyboardArrowUp as KeyboardArrowUpIcon } from '@mui/icons-material';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import { useTheme } from '@mui/material/styles';
 
@@ -25,7 +26,7 @@ const Base = (props) => {
         '&.Mui-disabled': { opacity: 0.3 },
       },
       width: '75%',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         width: '100%',
       },
     },
@@ -54,12 +55,48 @@ const Base = (props) => {
     );
   };
 
+  const ScrollTop = (props) => {
+    const { children, window } = props;
+    
+    const trigger = useScrollTrigger({
+      target: window ? window() : undefined,
+      disableHysteresis: true,
+      threshold: 100,
+    });
+
+    const handleClick = (event) => {
+      const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+
+      if (anchor) {
+        anchor.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      }
+    };
+
+    return (
+      <Zoom in={trigger}>
+        <Box
+          onClick={handleClick}
+          role="presentation"
+          sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        >
+          <Tooltip title={<Typography variant="body2">Go to top</Typography>} TransitionComponent={Zoom}>
+            {children}
+          </Tooltip>
+        </Box>
+      </Zoom>
+    );
+  };
+
   return (
     <Box mt={5} mb={5} sx={classes.root}>
       <CssBaseline />
 
       <Grid container justifyContent="center">
         <Grid item container xs={11} sm={11} md={10} lg={8} xl={7} justifyContent="center">
+          <div id="back-to-top-anchor" />
           { children[0] }
 
           <Box pt={3} sx={{ width: '100%' }}>
@@ -69,7 +106,7 @@ const Base = (props) => {
                 onChange={handleChange}
                 variant="scrollable"
                 scrollButtons="auto"
-                allowScrollButtonsMobile
+                // allowScrollButtonsMobile
                 sx={classes.tabsMain}
               >
                 <Tab label={mdDownScreenSize ? "Skills" : <Typography sx={{ fontWeight: 'bold' }}>Skills</Typography>} />
@@ -85,6 +122,12 @@ const Base = (props) => {
           </Box>
         </Grid>
       </Grid>
+
+      <ScrollTop {...props}>
+        <Fab color="primary" size="small">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
     </Box>
   );
 }

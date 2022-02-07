@@ -18,7 +18,9 @@ const Skills = () => {
     avatar: {
       width: theme.spacing(8),
       height: theme.spacing(8),
-      border: `2px solid ${theme.palette.text.disabled}`,
+      border: `2px solid ${theme.palette.text.primary}`,
+      backgroundColor: 'background.paper',
+      color: 'text.primary',
     },
     divider: {
       width: mdDownScreenSize ? '100%' : '75%',
