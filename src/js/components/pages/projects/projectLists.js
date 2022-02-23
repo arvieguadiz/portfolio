@@ -1,9 +1,8 @@
 import todo_thumbnail from '../../../../images/todo/todo_thumbnail.png';
 import todo_01 from '../../../../images/todo/todo_01.png';
-import todo_03 from '../../../../images/todo/todo_03.png';
-import todo_05 from '../../../../images/todo/todo_05.png';
-import todo_07 from '../../../../images/todo/todo_07.png';
-import todo_09 from '../../../../images/todo/todo_09.png';
+import todo_02 from '../../../../images/todo/todo_02.png';
+import todo_03 from '../../../../images/todo/todo_03.jpg';
+import todo_04 from '../../../../images/todo/todo_04.png';
 
 import loopmod_thumbnail from '../../../../images/loopmod_thumbnail.png';
 import loopmod_01 from '../../../../images/loopmod_01.png';
@@ -45,7 +44,7 @@ const projectLists = [
       desc: '',
     },
     images: [
-      todo_01, todo_03, todo_09, todo_05, todo_07,
+      todo_01, todo_02, todo_03, todo_04,
     ]
   },
   {
