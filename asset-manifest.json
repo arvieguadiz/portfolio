@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/portfolio/static/js/main.dc4749d6.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.dc4749d6.chunk.js.map",
+    "main.js": "/portfolio/static/js/main.92855d59.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.92855d59.chunk.js.map",
     "runtime-main.js": "/portfolio/static/js/runtime-main.8b6998ee.js",
     "runtime-main.js.map": "/portfolio/static/js/runtime-main.8b6998ee.js.map",
     "static/js/2.e466a5af.chunk.js": "/portfolio/static/js/2.e466a5af.chunk.js",
@@ -51,12 +51,12 @@
     "static/media/todo_02.2cd9dd2b.png": "/portfolio/static/media/todo_02.2cd9dd2b.png",
     "static/media/todo_03.8f0487ec.jpg": "/portfolio/static/media/todo_03.8f0487ec.jpg",
     "static/media/todo_04.6e8fbbee.png": "/portfolio/static/media/todo_04.6e8fbbee.png",
-    "static/media/todo_thumbnail.abcda62e.png": "/portfolio/static/media/todo_thumbnail.abcda62e.png",
+    "static/media/todo_thumbnail.19f4ce30.png": "/portfolio/static/media/todo_thumbnail.19f4ce30.png",
     "static/media/wordpress.71e1ea4c.png": "/portfolio/static/media/wordpress.71e1ea4c.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8b6998ee.js",
     "static/js/2.e466a5af.chunk.js",
-    "static/js/main.dc4749d6.chunk.js"
+    "static/js/main.92855d59.chunk.js"
   ]
 }
